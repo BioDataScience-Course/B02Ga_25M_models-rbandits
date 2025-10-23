@@ -1,6 +1,6 @@
 ---
 title: "___"
-author: "___, ___, ___, ___"
+author: "Pierre Vandenberghe, Théo Galand, Arthur Ohmann, Jérôme Borgniet"
 format:
   html:
     code-fold: true
