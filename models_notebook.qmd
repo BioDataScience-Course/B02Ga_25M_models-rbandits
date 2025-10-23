@@ -1,5 +1,5 @@
 ---
-title: "___"
+title: ""
 author: "Pierre Vandenberghe, Théo Galand, Arthur Ohmann, Jérôme Borgniet"
 format:
   html:
@@ -40,7 +40,7 @@ if (!"tools:tests" %in% search())
 knitr::opts_chunk$set(dev = "ragg_png")
 
 # Configuration de l'environnement
-
+SciViews::R("model", lang = "fr")
 ```
 
 <!--% Importez les données que vous aurez préalablement nettoyées, remaniées et labélisées dans le script R nommé `R/import.R`. -->
