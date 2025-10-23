@@ -5,6 +5,7 @@
 
 ant<-read$xlsx("https://zenodo.org/records/1198839/files/template_Bishop.xlsx?download=1", cache_file = here::here("data", "cache", "ant.xlsx"), sheet = 4, skip = 9) |> janitor::clean_names()
 
+# Conversion en numérique
 ant$head_length   <- as.numeric(ant$head_length)
 ant$head_width    <- as.numeric(ant$head_width)
 ant$scape_length  <- as.numeric(ant$scape_length)
@@ -27,6 +28,8 @@ ant$alitrunk_spines <- as.factor(ant$alitrunk_spines)
 ant$petiolar_spines <- as.factor(ant$petiolar_spines)
 ant$sculpturing    <- as.factor(ant$sculpturing)
 
+# on simplifie les locations en spécificiant juste les 3 environnements au lieu de leur précision exacte 
+ant$environnement <- substr(ant$location_code, 1, 2)
 
 # Etape 2 : Description brève des données ---------------------------------
 
@@ -42,3 +45,4 @@ ant$sculpturing    <- as.factor(ant$sculpturing)
 
 # Etape 5 : Sauvegarde locale des données retravaillées -------------------
 
+ 
