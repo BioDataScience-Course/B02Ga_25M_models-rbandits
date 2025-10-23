@@ -36,6 +36,30 @@ ant$environnement <- substr(ant$location_code, 1, 2)
 
 
 # Etape 3 : Nettoyage des données  ----------------------------------------
+ant <- ant[, !(names(ant) %in% c("field_name", "individual_no", "location_code"))]
+
+# 2️⃣ Remplacer les codes de la colonne "pilosity"
+ant$pilosity <- recode(ant$pilosity,
+  "A" = "No hairs present en alitrunk profile",
+  "B" = "Few (<A0) hairs present en alitrunk profile",
+  "C" = "Moderately hairy (>A0 hairs present en alitrunk profile)",
+  "D" = "Alitrunk densely hairy, or fuzzy in profile"
+)
+
+# 3️⃣ Remplacer les codes de la colonne "sculpturing"
+ant$sculpturing <- recode(ant$sculpturing,
+  "A" = "No marking",
+  "B" = "Cuticule appears completely smooth, often shiny",
+  "C" = "Shallow wrinkles/pits",
+  "D" = "Surface heavily textured with ridges, grooves or pits"
+)
+
+# 4️⃣ Remplacer les codes de la colonne "environnement"
+ant$environnement <- recode(ant$environnement,
+  "OG" = "primary forest",
+  "OP" = "oil palm plantation",
+  "SF" = "logged forest"
+)
 
 
 
