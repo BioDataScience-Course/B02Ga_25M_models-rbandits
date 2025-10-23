@@ -32,8 +32,9 @@ ant$sculpturing    <- as.factor(ant$sculpturing)
 ant$environnement <- substr(ant$location_code, 1, 2)
 
 # Etape 2 : Description brève des données ---------------------------------
+Description morphométrique et de l`abondance de 399 morphoespèces de forumis capturées dans leur nid sousterrain. 
 
-
+skimr::skim(ant)
 
 # Etape 3 : Nettoyage des données  ----------------------------------------
 
