@@ -119,5 +119,6 @@ ant <- labelise(
 
 
 # Etape 5 : Sauvegarde locale des données retravaillées -------------------
-
+saveRDS(ant, "ant.rds")
+ant <- readRDS("ant.rds")
  
