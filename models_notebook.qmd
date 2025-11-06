@@ -93,7 +93,8 @@ chart(data = ant, ~ pilosity %fill=% environnement) +
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-chart(data = ant, head_length ~ head_width) + geom_point()
+chart(data = ant, head_length ~ head_width) +
+  geom_point()
 ```
 
 ... interprétation #4...
