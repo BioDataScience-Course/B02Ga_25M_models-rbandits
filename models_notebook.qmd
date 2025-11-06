@@ -62,6 +62,10 @@ tabularise$headtail(ant)
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
 ```{r chart1}
+chart(data = ant, ~ mandible_length %col=% mandible_length | environnement) +
+  geom_histogram(position = "dodge") +
+  ylab("Effectifs") +
+  scale_fill_viridis_d()
 
 ```
 
