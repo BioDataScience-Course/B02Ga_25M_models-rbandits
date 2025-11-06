@@ -78,8 +78,8 @@ tabularise$headtail(ant)
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = ant, head_length ~ head_width %col=% environnement) + 
-  geom_point()
+chart(data = ant, ~ pilosity %fill=% environnement) + 
+  geom_bar()
 ```
 
 ... interprétation #3...
