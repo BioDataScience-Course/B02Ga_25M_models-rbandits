@@ -32,14 +32,16 @@ ant$sculpturing    <- as.factor(ant$sculpturing)
 ant$environnement <- substr(ant$location_code, 1, 2)
 
 # Etape 2 : Description brève des données ---------------------------------
-#Description morphométrique et de l`abondance de 399 morphoespèces de forumis capturées dans leur nid sousterrain. 
+
+# Les données représentent les mesures morphologiques et l`abondance de 339 morphoespèces de fourmis capturées dans des fosses pédologiques. Ici, nous analysons tout particulièrement les mesures morphométriques des fourmis récoltées comme des valeurs numériques mesurés ou des présences ou non de certains éléments morphologiques selon le genre de la fourmi.
+tabularise$headtail(ant) 
 
 skimr::skim(ant)
 
 # Etape 3 : Nettoyage des données  ----------------------------------------
 ant <- ant[, !(names(ant) %in% c("field_name", "individual_no", "location_code"))]
 
-# 2️⃣ Remplacer les codes de la colonne "pilosity"
+# Remplacer les codes de la colonne "pilosity"
 ant$pilosity <- recode(ant$pilosity,
   "A" = "No hairs present en alitrunk profile",
   "B" = "Few (<A0) hairs present en alitrunk profile",
@@ -47,7 +49,7 @@ ant$pilosity <- recode(ant$pilosity,
   "D" = "Alitrunk densely hairy, or fuzzy in profile"
 )
 
-# 3️⃣ Remplacer les codes de la colonne "sculpturing"
+# Remplacer les codes de la colonne "sculpturing"
 ant$sculpturing <- recode(ant$sculpturing,
   "A" = "No marking",
   "B" = "Cuticule appears completely smooth, often shiny",
@@ -55,7 +57,7 @@ ant$sculpturing <- recode(ant$sculpturing,
   "D" = "Surface heavily textured with ridges, grooves or pits"
 )
 
-# 4️⃣ Remplacer les codes de la colonne "environnement"
+# Remplacer les codes de la colonne "environnement"
 ant$environnement <- recode(ant$environnement,
   "OG" = "primary forest",
   "OP" = "oil palm plantation",
@@ -121,4 +123,5 @@ ant <- labelise(
 # Etape 5 : Sauvegarde locale des données retravaillées -------------------
 saveRDS(ant, "ant.rds")
 ant <- readRDS("ant.rds")
+
  
