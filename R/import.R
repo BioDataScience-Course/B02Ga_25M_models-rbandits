@@ -61,7 +61,8 @@ ant$sculpturing <- recode(ant$sculpturing,
 ant$environnement <- recode(ant$environnement,
   "OG" = "primary forest",
   "OP" = "oil palm plantation",
-  "SF" = "logged forest"
+  "SF" = "logged forest",
+  "OF" = "primary forest"
 )
 
 
