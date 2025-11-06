@@ -61,7 +61,8 @@ ant$sculpturing <- recode(ant$sculpturing,
 ant$environnement <- recode(ant$environnement,
   "OG" = "primary forest",
   "OP" = "oil palm plantation",
-  "SF" = "logged forest"
+  "SF" = "logged forest",
+  "OF" = "primary forest"
 )
 
 
@@ -91,7 +92,7 @@ ant <- labelise(
     alitrunk_spines = "Présence d’épines sur le mésosoma (alitrunk)",
     petiolar_spines = "Présence d’épines sur le pétiole",
     sculpturing = "Sculpture de la cuticule",
-    environnement = "Type d’environnement (extrait du code de localisation)"
+    environnement = "Type d’environnement"
   ),
   
   units = list(

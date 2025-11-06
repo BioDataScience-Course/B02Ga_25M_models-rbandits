@@ -82,7 +82,8 @@ chart(data = ant, ~ mandible_length %col=% mandible_length | environnement) +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-
+chart(data = ant, head_length ~ head_width %col=% environnement) + 
+  geom_point()
 ```
 
 ... interprétation #3...
@@ -90,11 +91,11 @@ chart(data = ant, ~ mandible_length %col=% mandible_length | environnement) +
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-
+chart(data = ant, head_length ~ head_width) + geom_point()
 ```
 
 ... interprétation #4...
-
+Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire 
 ### Modélisation
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
@@ -103,19 +104,15 @@ chart(data = ant, ~ mandible_length %col=% mandible_length | environnement) +
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 ```{r reg1}
-
+head_lm <- lm(data = ant, head_length ~ head_width) 
+summary(head_lm) |> tabularise()
 ```
-```{r reg2}
 
-```
 
 #### Régression linéaire 2
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
-```{r reg3}
-
-```
-```{r reg4}
+```{r reg2}
 
 ```
 
