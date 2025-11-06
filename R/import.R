@@ -64,6 +64,9 @@ ant$environnement <- recode(ant$environnement,
   "SF" = "logged forest",
   "OF" = "primary forest"
 )
+# Création d'une colonne regroupant les 300 morphes en groupes
+ant$morph2 <- stringr::str_remove(ant$morph,"\\d{1,2}")
+
 
 
 
