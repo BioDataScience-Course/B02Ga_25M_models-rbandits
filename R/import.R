@@ -126,6 +126,8 @@ subfamily_lookup <- tribble(
   "Vollenhovia",    "Myrmicinae"
 )
 
+ant <- ant %>%
+  left_join(subfamily_lookup, by = "morph2")
 
 # Etape 4 : Ajout des labels et des unités --------------------------------
 ant <- labelise(
