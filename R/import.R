@@ -65,7 +65,57 @@ ant$environnement <- recode(ant$environnement,
 
 
 # Etape 4 : Ajout des labels et des unités --------------------------------
-
+ant <- labelise(
+  ant,
+  
+  label = list(
+    morph = "Morphotype",
+    head_length = "Longueur de la tête",
+    head_width = "Largeur de la tête",
+    scape_length = "Longueur du scape (antennal)",
+    eye_width = "Largeur de l’œil",
+    eye_length = "Longueur de l’œil",
+    inter_ocular = "Distance interoculaire",
+    mandible_length = "Longueur de la mandibule",
+    clypeus_width = "Largeur du clypeus",
+    clypeus_length = "Longueur du clypeus",
+    pronotum_width = "Largeur du pronotum",
+    webers_length = "Longueur de Weber",
+    hind_femur = "Longueur du fémur postérieur",
+    hind_tibia = "Longueur du tibia postérieur",
+    sting = "Présence du dard",
+    acidipore = "Présence d’un acidipore",
+    pilosity = "Densité de la pilosité",
+    alitrunk_spines = "Présence d’épines sur le mésosoma (alitrunk)",
+    petiolar_spines = "Présence d’épines sur le pétiole",
+    sculpturing = "Sculpture de la cuticule",
+    environnement = "Type d’environnement (extrait du code de localisation)"
+  ),
+  
+  units = list(
+    morph = NA,
+    head_length = "mm",
+    head_width = "mm",
+    scape_length = "mm",
+    eye_width = "mm",
+    eye_length = "mm",
+    inter_ocular = "mm",
+    mandible_length = "mm",
+    clypeus_width = "mm",
+    clypeus_length = "mm",
+    pronotum_width = "mm",
+    webers_length = "mm",
+    hind_femur = "mm",
+    hind_tibia = "mm",
+    sting = NA,
+    acidipore = NA,
+    pilosity = NA,
+    alitrunk_spines = NA,
+    petiolar_spines = NA,
+    sculpturing = NA,
+    environnement = NA
+  )
+)
 
 
 # Etape 5 : Sauvegarde locale des données retravaillées -------------------
