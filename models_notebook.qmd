@@ -27,7 +27,9 @@ bibliography: references.bib
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
 
-...Matériel et méthodes...
+Les données ont été trouvées sur le site : https://zenodo.org. Les données ont été remaniées et modifiées dans le dossier import.R. Nous réalisons l'analyse avec le logiciel R (r R.version.string) et en particulier le package {modelit} version r packageVersion("modelit") dans la SciViews Box 2025. Saturn Cloud (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler la version finale de ce bloc-notes.
+
+
 
 ## Analyses
 
