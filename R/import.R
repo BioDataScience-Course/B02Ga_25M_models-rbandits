@@ -95,7 +95,7 @@ ant <- labelise(
     alitrunk_spines = "Présence d’épines sur le mésosoma (alitrunk)",
     petiolar_spines = "Présence d’épines sur le pétiole",
     sculpturing = "Sculpture de la cuticule",
-    environnement = "Type d’environnement (extrait du code de localisation)"
+    environnement = "Type d’environnement"
   ),
   
   units = list(
