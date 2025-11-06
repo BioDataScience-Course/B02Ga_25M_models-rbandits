@@ -71,6 +71,8 @@ tabularise$headtail(ant)
 
 ```{r chart2}
 
+chart(data = ant, head_length ~ morph ) + 
+  geom_point()
 ```
 
 ... interprétation #2...
