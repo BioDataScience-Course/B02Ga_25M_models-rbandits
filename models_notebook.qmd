@@ -84,8 +84,8 @@ chart(data = ant, head_length ~ morph ) +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = ant, head_length ~ head_width %col=% environnement) + 
-  geom_point()
+chart(data = ant, ~ pilosity %fill=% environnement) + 
+  geom_bar()
 ```
 
 ... interprétation #3...
@@ -109,6 +109,7 @@ Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression
 ```{r reg1}
 head_lm <- lm(data = ant, head_length ~ head_width) 
 summary(head_lm) |> tabularise()
+chart(head_lm)
 ```
 
 
