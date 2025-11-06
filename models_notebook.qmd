@@ -108,6 +108,7 @@ Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression
 ```{r reg1}
 head_lm <- lm(data = ant, head_length ~ head_width) 
 summary(head_lm) |> tabularise()
+chart(head_lm)
 ```
 
 
