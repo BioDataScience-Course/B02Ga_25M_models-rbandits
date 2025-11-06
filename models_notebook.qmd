@@ -47,9 +47,9 @@ SciViews::R("model", lang = "fr")
 
 ```{r import}
 # Lecture des données
-___ <- ___
+ant <- read$rds("data/ant.rds")
 # Tableau des premières et dernières lignes
-tabularise$headtail(___)
+tabularise$headtail(ant)
 ```
 
 ### Description des données
