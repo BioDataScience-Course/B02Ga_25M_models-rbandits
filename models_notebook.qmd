@@ -21,18 +21,20 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
+<<<<<<< HEAD
+... Introduction et but... Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.
+=======
 Les espèces de fourmis peuvent être différencier par leur morphologie.
 Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents.
 
 Lors de ce projet, nous allons vérifier si cette afirmation est également valable pour les sous-famille de fourmi. 
+>>>>>>> 0adcf2019df4f45e7b6fd3b13a168e1cd8a4314a
 
 ## Matériel et méthodes
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
 
 Les données ont été trouvées sur le site : https://zenodo.org. Les données ont été remaniées et modifiées dans le dossier import.R. Nous réalisons l'analyse avec le logiciel R (r R.version.string) et en particulier le package {modelit} version r packageVersion("modelit") dans la SciViews Box 2025. Saturn Cloud (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler la version finale de ce bloc-notes.
-
-
 
 ## Analyses
 
@@ -84,11 +86,12 @@ Les graphique semble nous indiquer qu'il y a une corrélation entre longueur de 
 
 ```{r chart2}
 
-chart(data = ant, head_length ~ morph ) + 
-  geom_point()
+chart(data = ant, mandible_length ~ subfamily %fill=% subfamily | environnement) + 
+  geom_violin() + 
+  coord_flip()
 ```
 
-... interprétation #2...
+Ce graphique décrit la longueur des mandibules des fourmis en fonctions de leur environnement et de leur famille. Pour commencer nous observons que pour les différentes familles, les mandibules varient en taille. mais nous observons également que au sein des familles, la taille des mandibules varient selon les environnements. Pour finir, nous observons que toutes les familles de fourmis ne sont pas présentes dans tout les environnements.   
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
@@ -107,38 +110,37 @@ Nous avons établi un graphique qui analyse la répartition des différentes fam
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-chart(data = ant, head_length ~ head_width) +
+chart(data = ant, head_length ~ head_width | ) +
   geom_point()
 ```
 
-... interprétation #4...
-Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire 
-### Modélisation
+... interprétation #4... Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire \### Modélisation
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
 #### Régression linéaire 1
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
+
 ```{r reg1}
 head_lm <- lm(data = ant, head_length ~ head_width) 
 summary(head_lm) |> tabularise()
 chart(head_lm)
 ```
 
-
 #### Régression linéaire 2
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
+
 ```{r reg2}
-ant_lm2 <- lm(data = ant, webers_length ~ hind_tibia + hind_femur + mandible_length) 
-summary(ant_lm2) |> tabularise()
+reg2 <- lm(data = ant, webers_leng)
 
 ```
 
 #### Modèle linéaire 1
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
+
 ```{r lin1}
 ant_lm1 <- lm(data = ant, head_length ~ head_width * eye_length * eye_width - head_width:eye_width)
 summary(ant_lm1) |> tabularise()
@@ -148,13 +150,16 @@ summary(ant_lm1) |> tabularise()
 #### Modèle linéaire 2
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
-```{r lin2}
 
+```{r lin2}
+ant_lm2 <- lm(data = ant, webers_length ~ (hind_tibia + hind_femur + mandible_length) * environnement) 
+summary(ant_lm2) |> tabularise()
 ```
 
 #### Modèle linéaire généralisé et/ou mixte 1
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
 ```{r lingen1}
 
 ```
@@ -162,6 +167,7 @@ summary(ant_lm1) |> tabularise()
 #### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
 ```{r lingen2}
 
 ```
