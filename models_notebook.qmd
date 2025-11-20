@@ -84,11 +84,16 @@ chart(data = ant, head_length ~ morph ) +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = ant, ~ pilosity %fill=% environnement) + 
-  geom_bar()
+chart(data = ant,~ subfamily %fill=% environnement |environnement) +
+  geom_bar() + 
+  coord_flip()
 ```
 
 ... interprétation #3...
+Nous avons établi un graphique qui analyse la répartition des différentes familles de fourmis selon l'environnement. 
+- La forêt exploitée présente beaucoup de Myrmicinae et de Ponerinae
+- La plantation de palmier à huile montre une forte baisse de diversité par rapport à la forêt exploitée, avec seulement quelques sous-familles présentes.
+- La forêt primaire accueille plusieurs sous-familles spécialisées, même si elles sont moins abondantes.
 
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
