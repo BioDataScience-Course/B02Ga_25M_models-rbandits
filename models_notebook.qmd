@@ -141,26 +141,35 @@ summary(ant_lm1) |> tabularise()
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r lin2}
-ant_lm2 <- lm(data = ant, webers_length ~ pronotum_width + (hind_femur + head_length) * sting)
-summary_(ant_lm2) |> tabularise()
-chart$residuals(ant_lm2)
+ant_lm2 <- lm(data = ant, webers_length ~ pronotum_width + (hind_femur + head_length) * sting),
+summary_(ant_lm2) |> tabularise(),
+chart$residuals(ant_lm2),
 
 
 a <- chart(data = ant, webers_length ~ pronotum_width %col=% sting) +
   geom_point() +
-  stat_smooth(method = "lm", formula = y ~ x)
+  stat_smooth(method = "lm", formula = y ~ x),
 
 b <- chart(data = ant, webers_length ~ hind_femur %col=% sting) +
   geom_point() +
-  stat_smooth(method = "lm", formula = y ~ x)
+  stat_smooth(method = "lm", formula = y ~ x),
 
-c<- chart(data = ant, webers_length ~ head_length %col=% sting) +
+c <- chart(data = ant, webers_length ~ head_length %col=% sting) +
   geom_point() +
-  stat_smooth(method = "lm", formula = y ~ x)
+  stat_smooth(method = "lm", formula = y ~ x),
 
 # Combinaison des graphiques dans une même figure
 combine_charts(list(a, b, c), common.legend = TRUE)
+
+eq__(ant_lm2)
 ```
+$$
+`r eq__(ant_lm2, use_coefs = TRUE, coef_digits = c(1, 3, 2, 2, 2, 2), origdata = ant)`
+$$
+
+La longueur de webers peut être estimée à partir de certaines mesures morphologique concernant le corps des fourmis. La relation démontre également que la présence ou non de dard influence également cette longueur de webers.
+Notre modèle linéaire est significatif au seuil de 5 %. l'analyse des résidus nous montre également qu'il y a une répartition relativement linéaire des résidus et que leur valeur est moyennement faible par rapport aux valeurs prédites (A). Les résidus ont également une répartition normale et symétrique (B). nous observons également une certaine homocédatiscité des résidus bien qu'elle ne soit pas parfaite (C). Un résidus possède un effet de levier important et un effet de Cook moyen, un autre point possède un effet de Cook important mais ne devrais pas poser de problème au vu de la résistance de notre graphique (D).
+
 
 #### Modèle linéaire généralisé et/ou mixte 1
 
