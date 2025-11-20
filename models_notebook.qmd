@@ -169,12 +169,10 @@ combine_charts(list(a, b, c), common.legend = TRUE)
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
 ```{r lingen1}
-model_gauss <- glm(webers_length ~ subfamily + environnement,
+model_gauss <- glm(webers_length ~ head_length + environnement,
                    data = ant, family = gaussian)
 summary(model_gauss) |> tabularise()
-boxplot(webers_length ~ environnement, data = ant,
-        ylab = "Longueur de Weber (mm)",
-        col = c("lightgreen","lightblue","lightpink"))
+
 ```
 -Sous‑famille Ponerinae : effet positif significatif (Estimate ≈ +0.45 mm, p = 0.025). Les fourmis de cette sous‑famille ont une longueur de Weber plus grande que la catégorie de référence.
 
