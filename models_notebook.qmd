@@ -92,12 +92,17 @@ Ce graphique décrit la longueur des mandibules des fourmis en fonctions de leur
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
+
 chart(data = ant, ~ subfamily %fill=% environnement | environnement) + 
   geom_bar() + 
   coord_flip()
 ```
 
 ... interprétation #3...
+Nous avons établi un graphique qui analyse la répartition des différentes familles de fourmis selon l'environnement. 
+- La forêt exploitée présente beaucoup de Myrmicinae et de Ponerinae
+- La plantation de palmier à huile montre une forte baisse de diversité par rapport à la forêt exploitée, avec seulement quelques sous-familles présentes.
+- La forêt primaire accueille plusieurs sous-familles spécialisées, même si elles sont moins abondantes.
 
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
@@ -134,6 +139,8 @@ reg2 <- lm(data = ant, webers_leng ~ )
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r lin1}
+ant_lm1 <- lm(data = ant, head_length ~ head_width * eye_length * eye_width - head_width:eye_width)
+summary(ant_lm1) |> tabularise()
 
 ```
 
