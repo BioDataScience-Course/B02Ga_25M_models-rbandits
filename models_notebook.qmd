@@ -62,18 +62,30 @@ tabularise$headtail(ant)
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
 ```{r chart1}
-chart(data = ant, ~ mandible_length | environnement) +
-  geom_histogram(position = "dodge") +
-  ylab("Effectifs") 
+chart(data = ant, webers_length ~ hind_tibia  %col=% environnement | environnement) +
+  geom_point(na.rm= TRUE)
+# ant_num <- ant %>%
+#   select(
+#     -morph, -sting, -acidipore, -pilosity,
+#     -alitrunk_spines, -petiolar_spines,
+#     -sculpturing, -environnement
+#   ) %>%
+#   drop_na(.)%>%
+#   mutate(across(everything(), as.numeric))
+# 
+# ant_cor <- correlation(ant_num)
+# plot(ant_cor, type = "lower")
 
 ```
 
-... interprétation #1...
+Les graphique semble nous indiquer qu'il y a une corrélation entre longueur de Weber et la longueur du tibia postérieur. Cela signifie qu'au plus l'espèce de fourmi est grande, au plus elle a de grands tibias postérieur. L'environnement ne semble pas directement influencer la morphologie des espèces. Mais on peux se demander si il possède tout de même une influence sur la répartition des espèces.
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
 ```{r chart2}
 
+chart(data = ant, head_length ~ morph ) + 
+  geom_point()
 ```
 
 ... interprétation #2...
@@ -81,8 +93,8 @@ chart(data = ant, ~ mandible_length | environnement) +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = ant, head_length ~ head_width %col=% environnement) + 
-  geom_point()
+chart(data = ant, ~ pilosity %fill=% environnement) + 
+  geom_bar()
 ```
 
 ... interprétation #3...
@@ -90,7 +102,8 @@ chart(data = ant, head_length ~ head_width %col=% environnement) +
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-chart(data = ant, head_length ~ head_width) + geom_point()
+chart(data = ant, head_length ~ head_width) +
+  geom_point()
 ```
 
 ... interprétation #4...
@@ -105,6 +118,7 @@ Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression
 ```{r reg1}
 head_lm <- lm(data = ant, head_length ~ head_width) 
 summary(head_lm) |> tabularise()
+chart(head_lm)
 ```
 
 
@@ -112,6 +126,8 @@ summary(head_lm) |> tabularise()
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 ```{r reg2}
+ant_lm2 <- lm(data = ant, webers_length ~ hind_tibia + hind_femur + mandible_length) 
+summary(ant_lm2) |> tabularise()
 
 ```
 
