@@ -60,9 +60,19 @@ tabularise$headtail(ant)
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
 ```{r chart1}
-chart(data = ant, webers_length ~ hind_tibia  %col=% environnement) +
+chart(data = ant, webers_length ~ hind_tibia  %col=% environnement | environnement) +
   geom_point(na.rm= TRUE)
-
+# ant_num <- ant %>%
+#   select(
+#     -morph, -sting, -acidipore, -pilosity,
+#     -alitrunk_spines, -petiolar_spines,
+#     -sculpturing, -environnement
+#   ) %>%
+#   drop_na(.)%>%
+#   mutate(across(everything(), as.numeric))
+# 
+# ant_cor <- correlation(ant_num)
+# plot(ant_cor, type = "lower")
 
 ```
 
@@ -97,13 +107,11 @@ Nous avons établi un graphique qui analyse la répartition des différentes fam
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-chart(data = ant, ~head_length %fill=% environnement | environnement) +
-  geom_bar()
+chart(data = ant, head_length ~ head_width | ) +
+  geom_point()
 ```
 
--La longueur de la tête est plus souvent plus petite que 1 mm.
--
-\### Modélisation
+... interprétation #4... Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire \### Modélisation
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
@@ -122,10 +130,13 @@ chart(head_lm)
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
 ```{r reg2}
-reg2 <- lm(data = ant, webers_leng ~ )
-
+reg2 <- lm(data = ant, webers_length ~ head_length ) 
+tabularise(summary(reg2))
+chart(reg2)
+chart$residuals(reg2)
 ```
-
+$$`r eq__(reg2, use_coefs = TRUE)`$$
+La longueur de la tête semble avoir un impact sur la longueur de Wéber. En effet, le paramètre béta de notre équation semble montrer qu'à chaque fois que la tête augmente de taille de 1 mm, la distance de Wéber augment de 1.45 mm. De plus ce paramètre est significatif au seuil de 5% donc nous rejetons l'hypothèse nulle selon laquelle ce paramètre est = 0.Quand au R^2 ajusté, il décrit 91,5% de la variation du modèle.Concernant la p-value du modèle, elle est inférieur au seuil alpha de 5% ce qui implique que notre modèle est fiable. Notre modèle semble bien s'aligner dans les données. Concernant nos résidus : ils semblent respecter l'hypothèse linéarité en se répartissant aléatoirement autour de 0, le graphique quantile-quantile montre que l'hypothèse de normalité semble satisfaite, la variance semble être constante (homoscédasticité des résidus) et enfin aucune valeur ne semble avoir une influence très importante sur nos résidus. 
 #### Modèle linéaire 1
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
@@ -141,25 +152,8 @@ summary(ant_lm1) |> tabularise()
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r lin2}
-ant_lm2 <- lm(data = ant, webers_length ~ pronotum_width + (hind_femur + head_length) * sting)
-summary_(ant_lm2) |> tabularise()
-chart$residuals(ant_lm2)
-
-
-a <- chart(data = ant, webers_length ~ pronotum_width %col=% sting) +
-  geom_point() +
-  stat_smooth(method = "lm", formula = y ~ x)
-
-b <- chart(data = ant, webers_length ~ hind_femur %col=% sting) +
-  geom_point() +
-  stat_smooth(method = "lm", formula = y ~ x)
-
-c<- chart(data = ant, webers_length ~ head_length %col=% sting) +
-  geom_point() +
-  stat_smooth(method = "lm", formula = y ~ x)
-
-# Combinaison des graphiques dans une même figure
-combine_charts(list(a, b, c), common.legend = TRUE)
+ant_lm2 <- lm(data = ant, webers_length ~ (hind_tibia + hind_femur + mandible_length) * environnement) 
+summary(ant_lm2) |> tabularise()
 ```
 
 #### Modèle linéaire généralisé et/ou mixte 1
