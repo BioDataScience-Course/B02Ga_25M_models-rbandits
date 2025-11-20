@@ -60,19 +60,9 @@ tabularise$headtail(ant)
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
 ```{r chart1}
-chart(data = ant, webers_length ~ hind_tibia  %col=% environnement | environnement) +
+chart(data = ant, webers_length ~ hind_tibia  %col=% environnement) +
   geom_point(na.rm= TRUE)
-# ant_num <- ant %>%
-#   select(
-#     -morph, -sting, -acidipore, -pilosity,
-#     -alitrunk_spines, -petiolar_spines,
-#     -sculpturing, -environnement
-#   ) %>%
-#   drop_na(.)%>%
-#   mutate(across(everything(), as.numeric))
-# 
-# ant_cor <- correlation(ant_num)
-# plot(ant_cor, type = "lower")
+
 
 ```
 
@@ -153,8 +143,25 @@ chart(data = ant, head_length ~ mandible_length %col=% environnement) +
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r lin2}
-ant_lm2 <- lm(data = ant, webers_length ~ (hind_tibia + hind_femur + mandible_length) * environnement) 
-summary(ant_lm2) |> tabularise()
+ant_lm2 <- lm(data = ant, webers_length ~ pronotum_width + (hind_femur + head_length) * sting)
+summary_(ant_lm2) |> tabularise()
+chart$residuals(ant_lm2)
+
+
+a <- chart(data = ant, webers_length ~ pronotum_width %col=% sting) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x)
+
+b <- chart(data = ant, webers_length ~ hind_femur %col=% sting) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x)
+
+c<- chart(data = ant, webers_length ~ head_length %col=% sting) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x)
+
+# Combinaison des graphiques dans une même figure
+combine_charts(list(a, b, c), common.legend = TRUE)
 ```
 
 #### Modèle linéaire généralisé et/ou mixte 1
