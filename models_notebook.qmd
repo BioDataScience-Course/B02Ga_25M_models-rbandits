@@ -21,9 +21,9 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
+... Introduction et but... Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.
 
-... Introduction et but... Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents.
-
+Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces.
 
 
 ## Matériel et méthodes
@@ -60,19 +60,9 @@ tabularise$headtail(ant)
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
 ```{r chart1}
-chart(data = ant, webers_length ~ hind_tibia  %col=% environnement | environnement) +
+chart(data = ant, webers_length ~ hind_tibia  %col=% environnement) +
   geom_point(na.rm= TRUE)
-# ant_num <- ant %>%
-#   select(
-#     -morph, -sting, -acidipore, -pilosity,
-#     -alitrunk_spines, -petiolar_spines,
-#     -sculpturing, -environnement
-#   ) %>%
-#   drop_na(.)%>%
-#   mutate(across(everything(), as.numeric))
-# 
-# ant_cor <- correlation(ant_num)
-# plot(ant_cor, type = "lower")
+
 
 ```
 
@@ -141,18 +131,37 @@ reg2 <- lm(data = ant, webers_leng ~ )
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r lin1}
-ant_lm1 <- lm(data = ant, head_length ~ head_width * eye_length * eye_width - head_width:eye_width)
-summary(ant_lm1) |> tabularise()
-
+ant_lm1 <- lm(data = ant, head_length ~ mandible_length * environnement)
+summary_(ant_lm1) |> tabularise()
 ```
-
+```{r chart lin1}
+chart(data = ant, head_length ~ mandible_length %col=% environnement) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x)
+```
 #### Modèle linéaire 2
-
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r lin2}
-ant_lm2 <- lm(data = ant, webers_length ~ (hind_tibia + hind_femur + mandible_length) * environnement) 
-summary(ant_lm2) |> tabularise()
+ant_lm2 <- lm(data = ant, webers_length ~ pronotum_width + (hind_femur + head_length) * sting)
+summary_(ant_lm2) |> tabularise()
+chart$residuals(ant_lm2)
+
+
+a <- chart(data = ant, webers_length ~ pronotum_width %col=% sting) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x)
+
+b <- chart(data = ant, webers_length ~ hind_femur %col=% sting) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x)
+
+c<- chart(data = ant, webers_length ~ head_length %col=% sting) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x)
+
+# Combinaison des graphiques dans une même figure
+combine_charts(list(a, b, c), common.legend = TRUE)
 ```
 
 #### Modèle linéaire généralisé et/ou mixte 1
