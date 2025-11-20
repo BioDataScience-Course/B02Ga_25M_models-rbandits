@@ -123,7 +123,28 @@ subfamily_lookup <- tribble(
   "Technomyrmex",   "Dolichoderinae",
   "Tetramorium",    "Myrmicinae",
   "Tetraponera",    "Pseudomyrmecinae",
-  "Vollenhovia",    "Myrmicinae"
+  "Vollenhovia",    "Myrmicinae", 
+  "Epelysidris",      "Myrmicinae",
+  "Eurhopalothrix",   "Myrmicinae",
+  "Iridomyrmex",      "Dolichoderinae",
+  "Loweriella",       "Formicinae",
+  "Mayriella",        "Myrmicinae",
+  "Mystrium",         "Amblyoponinae",
+  "Nylanderia",       "Formicinae",
+  "Ochetellus",       "Dolichoderinae",
+  "Odontoponera",     "Ponerinae",
+  "Pachycondyla",     "Ponerinae",
+  "Paraparatrechina", "Formicinae",
+  "Paratrechina",     "Formicinae",
+  "Polyrachis",       "Formicinae",
+  "Ponera",           "Ponerinae",
+  "Pristomyrmex",     "Myrmicinae",
+  "Proatta",          "Myrmicinae",
+  "Probolomyrmex",    "Proceratiinae",
+  "Proceratinum",     "Proceratiinae",
+  "Protanilla",       "Leptanillinae",
+  "Pseudolasius",     "Formicinae"
+  
 )
 
 ant <- ant %>%
