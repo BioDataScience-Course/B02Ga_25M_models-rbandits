@@ -126,8 +126,7 @@ chart(head_lm)
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 ```{r reg2}
-ant_lm2 <- lm(data = ant, webers_length ~ hind_tibia + hind_femur + mandible_length) 
-summary(ant_lm2) |> tabularise()
+
 
 ```
 
@@ -142,7 +141,8 @@ summary(ant_lm2) |> tabularise()
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 ```{r lin2}
-
+ant_lm2 <- lm(data = ant, webers_length ~ (hind_tibia + hind_femur + mandible_length) * environnement) 
+summary(ant_lm2) |> tabularise()
 ```
 
 #### Modèle linéaire généralisé et/ou mixte 1
