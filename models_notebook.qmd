@@ -21,9 +21,9 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
+... Introduction et but... Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.
 
-... Introduction et but... Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents.
-
+Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces.
 
 
 ## Matériel et méthodes
@@ -131,13 +131,18 @@ reg2 <- lm(data = ant, webers_leng ~ )
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r lin1}
-ant_lm1 <- lm(data = ant, head_length ~ head_width * eye_length * eye_width - head_width:eye_width)
-summary(ant_lm1) |> tabularise()
-
+ant_lm1 <- lm(data = ant, head_length ~ mandible_length * environnement)
+summary_(ant_lm1) |> tabularise()
 ```
-
+```{r chart lin1}
+chart(data = ant, head_length ~ mandible_length %col=% environnement) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x)
+```
+```{r resid lin1}
+chart$residuals(ant_lm1)
+```
 #### Modèle linéaire 2
-
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r lin2}
@@ -176,8 +181,20 @@ Notre modèle linéaire est significatif au seuil de 5 %. l'analyse des résidus
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
 ```{r lingen1}
-
+model_gauss <- glm(webers_length ~ subfamily + environnement,
+                   data = ant, family = gaussian)
+summary(model_gauss) |> tabularise()
+boxplot(webers_length ~ environnement, data = ant,
+        ylab = "Longueur de Weber (mm)",
+        col = c("lightgreen","lightblue","lightpink"))
 ```
+-Sous‑famille Ponerinae : effet positif significatif (Estimate ≈ +0.45 mm, p = 0.025). Les fourmis de cette sous‑famille ont une longueur de Weber plus grande que la catégorie de référence.
+
+-Environnement forêt primaire : effet positif significatif (Estimate ≈ +0.136 mm, p = 0.001). Les fourmis de la forêt primaire sont plus grandes.
+
+-Environnement plantation de palmiers : effet négatif mais non significatif (p = 0.13).
+
+-Les autres sous‑familles ne montrent pas d’effet significatif. 
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
