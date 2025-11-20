@@ -21,10 +21,10 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-... Introduction et but...
 Les espèces de fourmis peuvent être différencier par leur morphologie.
 Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents.
-Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.
+
+Lors de ce projet, nous allons vérifier si cette afirmation est également valable pour les sous-famille de fourmi. 
 
 ## Matériel et méthodes
 
@@ -62,14 +62,23 @@ tabularise$headtail(ant)
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
 ```{r chart1}
-chart(data = ant, ~ mandible_length %col=% mandible_length | environnement) +
-  geom_histogram(position = "dodge") +
-  ylab("Effectifs") +
-  scale_fill_viridis_d()
+chart(data = ant, webers_length ~ hind_tibia  %col=% environnement | environnement) +
+  geom_point(na.rm= TRUE)
+# ant_num <- ant %>%
+#   select(
+#     -morph, -sting, -acidipore, -pilosity,
+#     -alitrunk_spines, -petiolar_spines,
+#     -sculpturing, -environnement
+#   ) %>%
+#   drop_na(.)%>%
+#   mutate(across(everything(), as.numeric))
+# 
+# ant_cor <- correlation(ant_num)
+# plot(ant_cor, type = "lower")
 
 ```
 
-... interprétation #1...
+Les graphique semble nous indiquer qu'il y a une corrélation entre longueur de Weber et la longueur du tibia postérieur. Cela signifie qu'au plus l'espèce de fourmi est grande, au plus elle a de grands tibias postérieur. L'environnement ne semble pas directement influencer la morphologie des espèces. Mais on peux se demander si il possède tout de même une influence sur la répartition des espèces.
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
@@ -122,6 +131,8 @@ chart(head_lm)
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 ```{r reg2}
+ant_lm2 <- lm(data = ant, webers_length ~ hind_tibia + hind_femur + mandible_length) 
+summary(ant_lm2) |> tabularise()
 
 ```
 
@@ -129,6 +140,8 @@ chart(head_lm)
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 ```{r lin1}
+ant_lm1 <- lm(data = ant, head_length ~ head_width * eye_length * eye_width - head_width:eye_width)
+summary(ant_lm1) |> tabularise()
 
 ```
 
