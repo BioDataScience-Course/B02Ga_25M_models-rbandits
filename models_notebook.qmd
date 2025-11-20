@@ -75,11 +75,12 @@ chart(data = ant, ~ mandible_length %col=% mandible_length | environnement) +
 
 ```{r chart2}
 
-chart(data = ant, head_length ~ morph ) + 
-  geom_point()
+chart(data = ant, mandible_length ~ subfamily %fill=% subfamily | environnement) + 
+  geom_violin() + 
+  coord_flip()
 ```
 
-... interprétation #2...
+Ce graphique décrit la longueur des mandibules des fourmis en fonctions de leur environnement et de leur famille. Pour commencer nous observons que pour les différentes familles, les mandibules varient en taille. mais nous observons également que au sein des familles, la taille des mandibules varient selon les environnements. Pour finir, nous observons que toutes les familles de fourmis ne sont pas présentes dans tout les environnements.   
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
