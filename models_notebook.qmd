@@ -23,7 +23,7 @@ bibliography: references.bib
 
 ... Introduction et but... Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.
 
-Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. 
+Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces.
 
 
 ## Matériel et méthodes
@@ -92,7 +92,8 @@ Ce graphique décrit la longueur des mandibules des fourmis en fonctions de leur
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = ant,~ subfamily %fill=% environnement |environnement) +
+
+chart(data = ant, ~ subfamily %fill=% environnement | environnement) + 
   geom_bar() + 
   coord_flip()
 ```
@@ -106,11 +107,13 @@ Nous avons établi un graphique qui analyse la répartition des différentes fam
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-chart(data = ant, head_length ~ head_width | ) +
-  geom_point()
+chart(data = ant, ~head_length %fill=% environnement | environnement) +
+  geom_bar()
 ```
 
-... interprétation #4... Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire \### Modélisation
+-La longueur de la tête est plus souvent plus petite que 1 mm.
+-
+\### Modélisation
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
@@ -129,7 +132,7 @@ chart(head_lm)
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
 ```{r reg2}
-reg2 <- lm(data = ant, webers_leng)
+reg2 <- lm(data = ant, webers_leng ~ )
 
 ```
 
