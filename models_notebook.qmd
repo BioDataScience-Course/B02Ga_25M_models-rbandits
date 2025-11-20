@@ -110,11 +110,13 @@ Nous avons établi un graphique qui analyse la répartition des différentes fam
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-chart(data = ant, head_length ~ head_width | ) +
-  geom_point()
+chart(data = ant, ~head_length %fill=% environnement | environnement) +
+  geom_bar()
 ```
 
-... interprétation #4... Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire \### Modélisation
+-La longueur de la tête est plus souvent plus petite que 1 mm.
+-
+\### Modélisation
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
