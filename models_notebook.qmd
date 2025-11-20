@@ -139,6 +139,9 @@ chart(data = ant, head_length ~ mandible_length %col=% environnement) +
   geom_point() +
   stat_smooth(method = "lm", formula = y ~ x)
 ```
+```{r resid lin1}
+chart$residuals(ant_lm1)
+```
 #### Modèle linéaire 2
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
