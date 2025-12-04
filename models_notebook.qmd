@@ -123,7 +123,7 @@ head_lm <- lm(data = ant, head_length ~ head_width)
 summary(head_lm) |> tabularise()
 chart(head_lm)
 ```
-$$`r eq__(reg1, use_coefs = TRUE)`$$
+$$`r eq__(head_lm, use_coefs = TRUE)`$$
 
 La longueur de la tête semble avoir un impact sur la largeur de la tête. Le nuage de point nous montre bien qu'il y a une relation entre ces deux mesures. Cette relation est confirmée par la réalisation de la régression linéaire dont les deux paramètres sont significatifs au seuil alpha de 5% nous rejetons donc l'hypothèse nulle selon laquelle ces paramètres sont = 0. Le paramètre béta de notre équation nous montre qu'à chaque fois que la tête augmente de taille de 1 mm, la largeur de la tête augment de 1.02 mm. nous rejetons l'hypothèse nulle selon laquelle ce paramètre est = 0. Quand au R^2 ajusté, il décrit 92.16% de la variation du modèle. Concernant la p-value du modèle, elle est inférieur au seuil alpha de 5% ce qui implique que notre modèle est fiable. Notre modèle semble bien s'aligner dans les données. Concernant nos résidus : ils semblent respecter l'hypothèse linéarité en se répartissant aléatoirement autour de 0, le graphique quantile-quantile montre que l'hypothèse de normalité semble satisfaite, la variance semble être constante (homoscédasticité des résidus) et enfin aucune valeur ne semble avoir une influence très importante sur nos résidus. 
 
