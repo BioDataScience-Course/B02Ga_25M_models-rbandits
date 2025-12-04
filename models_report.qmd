@@ -1,5 +1,5 @@
 ---
-title: "___"
+title: "Influence de l'environnement sur la morphometrie des fourmis (Formicidae)"
 author: "Pierre Vandenberghe, Théo Galand, Arthur Ohmann, Jérôme Borgniet"
 format:
   pdf:
@@ -9,6 +9,25 @@ editor: visual
 lang: fr
 bibliography: references.bib
 ---
+
+```{r setup, include=FALSE}
+# Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
+if (!"tools:tests" %in% search())
+  source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
+
+# Configure Knitr to use AGG as graphic device
+knitr::opts_chunk$set(dev = "ragg_png")
+
+# Configuration de l'environnement
+SciViews::R("model", lang = "fr")
+```
+
+```{r import, eco=FALSE}
+# Lecture des données
+ant <- read$rds("data/ant.rds")
+# Tableau des premières et dernières lignes
+tabularise$headtail(ant)
+```
 
 <!--# Un rapport est différent d'un carnet de notes. Il ne s'agit donc pas de faire du copier-coller d'un document vers l'autre. Un rapport de synthèse doit être compréhensible sans devoir lire le carnet de notes. Le rapport de synthèse doit être  rédigé avec un style et une présentation adéquats. -->
 
@@ -38,49 +57,39 @@ Les données ont été trouvées sur le site : <https://zenodo.org.> Les donnée
 
 ## Modèle 1
 
-#résumé de la régression linéaire
-
-```{r fig1}
+```{r tab1, warning=FALSE}
+#| tbl_cap: "Paramètres du modèle linéaire multiple testant l'effet de l'environnement sur la relation allométrique tête-mandibule."
 ant_lm1 <- lm(data = ant, head_length ~ mandible_length * environnement)
 summary_(ant_lm1) |> tabularise()
 ```
 
-#graphique de la régression linéaire
-
-```{r chart fig1}
+```{r fig1, eco=FALSE}
+#| fig-cap: "Relation allométrique entre la longueur de la tête et la longueur de la mandibule selon les trois types d'environnements (lignes de régression linéaire)."
 chart(data = ant, head_length ~ mandible_length %col=% environnement) +
   geom_point() +
   stat_smooth(method = "lm", formula = y ~ x)
 ```
 
-#équation de la régression linéaire 
-$$`r eq__(ant_lm1, use_coefs = TRUE)`$$ 
+$$
+`r eq__(ant_lm1, use_coefs = TRUE)`
+$$
 
-Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement. Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent. Nous voyons par contre que l'environnement primary est significativement différent et le modèle linéaire nous montre que le rapport longueur de tête / longueur de la mandibule est plus élevé dans cet environnement.
+Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement (tab1). Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent (β2 a une valeur de p de 7.64 .10\^-1 et β4 a une valeur de p de 8.04 .10\^-1) (tab1). L'environnement primary est significativement différent (β3 a une valeur de p de 7.33 .10\^-7 et β5 a une valeur de p de 7.47 .10\^-11) (tab1). Le graphique du modèle linéaire nous montre que la régression linéaire du rapport longueur de tête / longueur de la mandibule est plus élevé dans l'environnement primary forest que logged forest et oil palm plantation qui ont une régression linéaire très similaire (fig1).
 
 ## Modèle 2
 
-#résumé du modèle linéaire généralisé
-
-```{r lingen2}
+```{r tab2, eco=FALSE}
+#| tbl-cap: "Résultats de la régression logistique (GLM Binomial) modélisant la probabilité de présence du dard en fonction de la taille (Weber) et de l'environnement."
 model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = binomial)
   tabularise(summary_(model_bino))
 
 ```
 
-#équation du modèle 
 $$
 `r eq__(model_bino, use_coefs = TRUE, coef_digits = c(2, 2, 2, 2, 2, 2, 2), origdata = ant)`
-$$ 
-- le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard.
+$$
 
--   Le terme Béta 1 (significatif également) indique les chances d'avoir un dard en fonction de la longueur. Pour chaque mm de plus sur notre fourmis, les chances sont de e\*-0.321 d'avoir un dard sont de 0,725. Donc pour chaque mm, les chances de posséder un dard diminuent de \~27%.
-
--   Le terme Béta 2 (significatif aussi) indique les chances que des fourmis des plantations de palmiers de posséder un dard. Cette valeur est négative et montre donc que les fourmis ont e\*-0.658 chances en moins d'avoir un dard par rapport aux fourmis de forets exploitées soit 52%.
-
--   Le paramètre Béta 3 n'étant pas significatif nous ne pouvons pas affirmer que les fourmis de forets primaires ont plus de chances d'avoir un dard que celles des forets exploitées.
-
--   Notre modèle est bien aligné dans nos données ; nous ne sommes pas en situation de surdispersion (Déviance/ddl = 1.096)
+Le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard (tab2). Le terme Béta 1 (significatif également) indique les chances d'avoir un dard en fonction de la longueur. Pour chaque mm de plus sur notre fourmis, les chances sont de e\*-0.321 d'avoir un dard sont de 0,725. Donc pour chaque mm, les chances de posséder un dard diminuent de \~27% (tab2). Le terme Béta 2 (significatif aussi) indique les chances que des fourmis des plantations de palmiers de posséder un dard. Cette valeur est négative et montre donc que les fourmis ont e\*-0.658 chances en moins d'avoir un dard par rapport aux fourmis de forets exploitées soit 52% (tab2). Le paramètre Béta 3 n'étant pas significatif nous ne pouvons pas affirmer que les fourmis de forets primaires ont plus de chances d'avoir un dard que celles des forets exploitées (tab2). Notre modèle est bien aligné dans nos données ; nous ne sommes pas en situation de surdispersion (Déviance/ddl = 1.096) (tab2).
 
 ## Discussion et Conclusion
 Après analyse, nous concluons que l'environnement a un effet sur différents traits morphologiques des fourmis.
