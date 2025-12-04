@@ -232,6 +232,10 @@ model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = b
   tabularise(summary_(model_bino))
 
 ```
+$$
+`r eq__(model_bino, use_coefs = TRUE, coef_digits = c(2, 2, 2, 2, 2, 2, 2), origdata = ant)`
+$$
+
 - le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a ~82% de chances de posséder un dard. 
 
 - Le terme Béta 1 (significatif également) indique les chances d'avoir un dard en fonction de la longueur. Pour chaque mm de plus sur notre fourmis, les chances sont de e*-0.321 d'avoir un dard sont de 0,725. Donc pour chaque mm, les chances de posséder un dard diminuent de ~27%. 
