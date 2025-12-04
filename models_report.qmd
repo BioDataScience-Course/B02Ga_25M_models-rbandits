@@ -37,7 +37,7 @@ tabularise$headtail(ant)
 
 La différenciation taxonomique des fourmis (Formicidae) repose largement sur l'analyse de traits morphologiques mesurables et de leurs variations. Ces relations biométriques entre les différents segments corporels constituent une base essentielle pour la classification des espèces.
 
-Le jeu de données analysé ici rassemble les mesures morphométriques précises de 339 espèces, échantillonnées au travers de trois environnements distincts. Cette approche permet de confronter la variabilité phénotypique interspécifique aux contraintes écologiques imposées par le milieu de vie.
+Le jeu de données [@bishop2018][@Bishop_2018] analysé ici rassemble les mesures morphométriques précises de 339 espèces, échantillonnées au travers de trois environnements distincts. Cette approche permet de confronter la variabilité phénotypique interspécifique aux contraintes écologiques imposées par le milieu de vie.
 
 <!--% Rédigez le but de ce rapport en 2 phrases.-->
 
@@ -70,11 +70,9 @@ chart(data = ant, head_length ~ mandible_length %col=% environnement) +
   stat_smooth(method = "lm", formula = y ~ x)
 ```
 
-
 $$
 `r eq__(ant_lm1, use_coefs = TRUE)`
 $$
-
 
 Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement (tab1). Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent (β2 a une valeur de p de 7.64 .10\^-1 et β4 a une valeur de p de 8.04 .10\^-1) (tab1). L'environnement primary est significativement différent (β3 a une valeur de p de 7.33 .10\^-7 et β5 a une valeur de p de 7.47 .10\^-11) (tab1). Le graphique du modèle linéaire nous montre que la régression linéaire du rapport longueur de tête / longueur de la mandibule est plus élevé dans l'environnement primary forest que logged forest et oil palm plantation qui ont une régression linéaire très similaire (fig1).
 
@@ -87,35 +85,22 @@ model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = b
 
 ```
 
-<<<<<<< HEAD
 #équation du modèle $$
 `r eq__(model_bino, use_coefs = TRUE, coef_digits = c(2, 2, 2, 2, 2, 2, 2), origdata = ant)`
-$$ - le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard.
-=======
 $$
-`r eq__(model_bino, use_coefs = TRUE, coef_digits = c(2, 2, 2, 2, 2, 2, 2), origdata = ant)`
-$$
->>>>>>> 37d81a44259ba989448a1221240c1c389a32e5fc
+
+-   le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard.
 
 Le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard (tab2). Le terme Béta 1 (significatif également) indique les chances d'avoir un dard en fonction de la longueur. Pour chaque mm de plus sur notre fourmis, les chances sont de e\*-0.321 d'avoir un dard sont de 0,725. Donc pour chaque mm, les chances de posséder un dard diminuent de \~27% (tab2). Le terme Béta 2 (significatif aussi) indique les chances que des fourmis des plantations de palmiers de posséder un dard. Cette valeur est négative et montre donc que les fourmis ont e\*-0.658 chances en moins d'avoir un dard par rapport aux fourmis de forets exploitées soit 52% (tab2). Le paramètre Béta 3 n'étant pas significatif nous ne pouvons pas affirmer que les fourmis de forets primaires ont plus de chances d'avoir un dard que celles des forets exploitées (tab2). Notre modèle est bien aligné dans nos données ; nous ne sommes pas en situation de surdispersion (Déviance/ddl = 1.096) (tab2).
 
 ## Discussion et Conclusion
+
 Après analyse, nous concluons que l'environnement a un effet sur différents traits morphologiques des fourmis.
 
-Pour commencer, nous notons évidemment qu'une relation linéaire existe entre la longueur de la tête et la longueur des mandibules. Nous observons également que les fourmis étudiées en forêt primaires présentent une pente plus raide dans la relation entre la longueur de leurs têtes et la longueur de leurs mandibules. Par contre les fourmis de forets exploitées et les fourmis de plantations de palmiers semblent présenter la même relation entre leurs mandibules et la longueur de leur têtes. Ceci peut être du à une pression de sélection différente. Cette relation pourrait montrer qu'une plus grande diversité existe en forêt primaire, il pourrait y avoir plus de niches écologiques différentes et plus de variation au sein des populations, comme le montre la figure 1. 
+Pour commencer, nous notons évidemment qu'une relation linéaire existe entre la longueur de la tête et la longueur des mandibules. Nous observons également que les fourmis étudiées en forêt primaires présentent une pente plus raide dans la relation entre la longueur de leurs têtes et la longueur de leurs mandibules. Par contre les fourmis de forets exploitées et les fourmis de plantations de palmiers semblent présenter la même relation entre leurs mandibules et la longueur de leur têtes. Ceci peut être du à une pression de sélection différente. Cette relation pourrait montrer qu'une plus grande diversité existe en forêt primaire, il pourrait y avoir plus de niches écologiques différentes et plus de variation au sein des populations, comme le montre la figure 1.
 
-Ensuite, nous avons observé les proportions de dards dans les populations de fourmis étudiées. Nous observons pour commencer que les fourmis de références, donc de taille moyenne et en forêt exploitée, ont 82% de chances d'avoir un dard. En comparaison nous relevons que dans les plantations de palmiers, cette chance d'avoir un dard diminue de 52% et tombe donc à 30%. Par contre nous ne pouvons pas affirmer qu'une différence existe pour les fourmis de forêts primaires par rapport aux fourmis de forêts exploitées. Nous supposons que cette relation montre que dans les plantations de palmiers l'absence de prédateurs et la dégradation des environnements pourraient laisser moins de places à la compétition et aux besoins défensifs, et donc qu'avoir un dard ne serait pas un trait avantageux. Par contre, avoir un dard serait sélectionné dans les environnements de forêt primaire et exploitées, nous supposons donc que la compétition et le besoin de se défendre est fort dans ces environnements. 
-De plus, nous observons de manière générale que les fourmis les plus grandes ont moins de chances d'avoir un dard. Nous supposons que cette relation est liée à la phylogénie des fourmis et que les fourmis de grandes tailles ne sont peut-être que rarement équipées de dards. 
+Ensuite, nous avons observé les proportions de dards dans les populations de fourmis étudiées. Nous observons pour commencer que les fourmis de références, donc de taille moyenne et en forêt exploitée, ont 82% de chances d'avoir un dard. En comparaison nous relevons que dans les plantations de palmiers, cette chance d'avoir un dard diminue de 52% et tombe donc à 30%. Par contre nous ne pouvons pas affirmer qu'une différence existe pour les fourmis de forêts primaires par rapport aux fourmis de forêts exploitées. Nous supposons que cette relation montre que dans les plantations de palmiers l'absence de prédateurs et la dégradation des environnements pourraient laisser moins de places à la compétition et aux besoins défensifs, et donc qu'avoir un dard ne serait pas un trait avantageux. Par contre, avoir un dard serait sélectionné dans les environnements de forêt primaire et exploitées, nous supposons donc que la compétition et le besoin de se défendre est fort dans ces environnements. De plus, nous observons de manière générale que les fourmis les plus grandes ont moins de chances d'avoir un dard. Nous supposons que cette relation est liée à la phylogénie des fourmis et que les fourmis de grandes tailles ne sont peut-être que rarement équipées de dards.
 
-Nous concluons donc que l'environnement a une influence sur divers traits morphologiques des fourmis mais ne semble pas être le seul trait influent. Nous nous questionnons donc à présent sur les autres facteurs existants et déterminants la morphologie des fourmis.
-<!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
+Nous concluons donc que l'environnement a une influence sur divers traits morphologiques des fourmis mais ne semble pas être le seul trait influent. Nous nous questionnons donc à présent sur les autres facteurs existants et déterminants la morphologie des fourmis. <!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
 
 ## Bibliographie
-
----
-title: "Ant"
-citeproc: true
-bibliography: refs.bib
-bibliographystyle: apa
-csl: https://zenodo.org/records/1198839/files/template_Bishop.xlsx?download=1
----
