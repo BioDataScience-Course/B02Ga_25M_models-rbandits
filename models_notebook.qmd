@@ -107,7 +107,7 @@ Nous avons établi un graphique qui analyse la répartition des différentes fam
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-chart(data = ant, head_length ~ head_width %col=% environnement| environnement) +
+chart(data = ant, head_length ~ head_width | ) +
   geom_point()
 ```
 
@@ -153,6 +153,9 @@ chart(data = ant, head_length ~ mandible_length %col=% environnement) +
 ```{r resid lin1}
 chart$residuals(ant_lm1)
 ```
+$$`r eq__(lin1, use_coefs = TRUE)`$$
+interprétation : 
+Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement. Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent. Nous voyons par contre que l'environnement primary est significativement différent et le modèle linéaire nous montre que le rapport longueur de tête / longueur de la mandibule est plus élevé dans cet environnement. 
 #### Modèle linéaire 2
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
