@@ -107,7 +107,7 @@ Nous avons établi un graphique qui analyse la répartition des différentes fam
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-chart(data = ant, head_length ~ head_width | ) +
+chart(data = ant, head_length ~ head_width %col=% environnement| environnement) +
   geom_point()
 ```
 
