@@ -7,7 +7,7 @@ format:
     toc: true
 editor: visual
 lang: fr
-bibliography: references.bib
+bibliography: "./references.bib"
 ---
 
 <!--# Un rapport est différent d'un carnet de notes. Il ne s'agit donc pas de faire du copier-coller d'un document vers l'autre. Un rapport de synthèse doit être compréhensible sans devoir lire le carnet de notes. Le rapport de synthèse doit être  rédigé avec un style et une présentation adéquats. -->
@@ -53,8 +53,7 @@ chart(data = ant, head_length ~ mandible_length %col=% environnement) +
   stat_smooth(method = "lm", formula = y ~ x)
 ```
 
-#équation de la régression linéaire 
-$$`r eq__(ant_lm1, use_coefs = TRUE)`$$ 
+#équation de la régression linéaire $$`r eq__(ant_lm1, use_coefs = TRUE)`$$
 
 Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement. Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent. Nous voyons par contre que l'environnement primary est significativement différent et le modèle linéaire nous montre que le rapport longueur de tête / longueur de la mandibule est plus élevé dans cet environnement.
 
@@ -68,11 +67,9 @@ model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = b
 
 ```
 
-#équation du modèle 
-$$
+#équation du modèle $$
 `r eq__(model_bino, use_coefs = TRUE, coef_digits = c(2, 2, 2, 2, 2, 2, 2), origdata = ant)`
-$$ 
-- le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard.
+$$ - le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard.
 
 -   Le terme Béta 1 (significatif également) indique les chances d'avoir un dard en fonction de la longueur. Pour chaque mm de plus sur notre fourmis, les chances sont de e\*-0.321 d'avoir un dard sont de 0,725. Donc pour chaque mm, les chances de posséder un dard diminuent de \~27%.
 
@@ -87,3 +84,11 @@ $$
 <!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
 
 ## Bibliographie
+
+---
+title: "Ant"
+citeproc: true
+bibliography: refs.bib
+bibliographystyle: apa
+csl: https://zenodo.org/records/1198839/files/template_Bishop.xlsx?download=1
+---
