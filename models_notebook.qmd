@@ -201,6 +201,9 @@ model_gauss <- glm(webers_length ~ head_length + environnement,
 summary(model_gauss) |> tabularise()
 
 ```
+$$
+`r eq__(model_gauss, use_coefs = TRUE, coef_digits = c(3, 2, 2, 2, 2, 2, 2), origdata = ant)`
+$$
 -Sous‑famille Ponerinae : effet positif significatif (Estimate ≈ +0.45 mm, p = 0.025). Les fourmis de cette sous‑famille ont une longueur de Weber plus grande que la catégorie de référence.
 
 -Environnement forêt primaire : effet positif significatif (Estimate ≈ +0.136 mm, p = 0.001). Les fourmis de la forêt primaire sont plus grandes.
