@@ -21,7 +21,7 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-... Introduction et but... Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.
+Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.
 
 Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces.
 
@@ -154,7 +154,7 @@ chart(data = ant, head_length ~ mandible_length %col=% environnement) +
 ```{r resid lin1}
 chart$residuals(ant_lm1)
 ```
-$$`r eq__(lin1, use_coefs = TRUE)`$$
+$$`r eq__(ant_lm1, use_coefs = TRUE)`$$
 interprétation : 
 Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement. Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent. Nous voyons par contre que l'environnement primary est significativement différent et le modèle linéaire nous montre que le rapport longueur de tête / longueur de la mandibule est plus élevé dans cet environnement. 
 #### Modèle linéaire 2
