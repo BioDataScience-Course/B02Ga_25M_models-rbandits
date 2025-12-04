@@ -40,14 +40,14 @@ Les données ont été trouvées sur le site : <https://zenodo.org.> Les donnée
 
 #résumé de la régression linéaire
 
-```{r fig1}
+```{r tab1}
 ant_lm1 <- lm(data = ant, head_length ~ mandible_length * environnement)
 summary_(ant_lm1) |> tabularise()
 ```
 #
 #graphique de la régression linéaire
 
-```{r tableau1}
+```{r fig1}
 chart(data = ant, head_length ~ mandible_length %col=% environnement) +
   geom_point() +
   stat_smooth(method = "lm", formula = y ~ x)
@@ -55,19 +55,22 @@ chart(data = ant, head_length ~ mandible_length %col=% environnement) +
 #| label: fig-model-allom
 #| fig-cap: "Relation allométrique entre la longueur de la tête et la longueur de la mandibule selon les trois types d'environnements (lignes de régression linéaire)."
 
-#équation de la régression linéaire $$`r eq__(ant_lm1, use_coefs = TRUE)`$$
+#équation de la régression linéaire 
+$$
+`r eq__(ant_lm1, use_coefs = TRUE)`
+$$
 
 
-- Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement (fig1).
-- Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent (β2 a une valeur de p de 7.64 .10^-1 et β4 a une valeur de p de 8.04 .10^-1) (fig1). 
-- L'environnement primary est significativement différent (β3 a une valeur de p de 7.33 .10^-7 et β5 a une valeur de p de 7.47 .10^-11) (fig1). 
-- Le graphique du modèle linéaire nous montre que la régression linéaire du rapport longueur de tête / longueur de la mandibule est plus élevé dans l'environnement primary forest que logged forest et oil palm plantation qui ont une régression linéaire très similaire (tableau1). 
+- Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement (tab1).
+- Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent (β2 a une valeur de p de 7.64 .10^-1 et β4 a une valeur de p de 8.04 .10^-1) (tab1). 
+- L'environnement primary est significativement différent (β3 a une valeur de p de 7.33 .10^-7 et β5 a une valeur de p de 7.47 .10^-11) (tab1). 
+- Le graphique du modèle linéaire nous montre que la régression linéaire du rapport longueur de tête / longueur de la mandibule est plus élevé dans l'environnement primary forest que logged forest et oil palm plantation qui ont une régression linéaire très similaire (fig1). 
 
 ## Modèle 2
 
 #résumé du modèle linéaire généralisé
 
-```{r fig2}
+```{r tab2}
 model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = binomial)
   tabularise(summary_(model_bino))
 
@@ -78,15 +81,15 @@ model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = b
 $$
 `r eq__(model_bino, use_coefs = TRUE, coef_digits = c(2, 2, 2, 2, 2, 2, 2), origdata = ant)`
 $$ 
-- le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard (fig2).
+- le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard (tab2).
 
--   Le terme Béta 1 (significatif également) indique les chances d'avoir un dard en fonction de la longueur. Pour chaque mm de plus sur notre fourmis, les chances sont de e\*-0.321 d'avoir un dard sont de 0,725. Donc pour chaque mm, les chances de posséder un dard diminuent de \~27% (fig2).
+-   Le terme Béta 1 (significatif également) indique les chances d'avoir un dard en fonction de la longueur. Pour chaque mm de plus sur notre fourmis, les chances sont de e\*-0.321 d'avoir un dard sont de 0,725. Donc pour chaque mm, les chances de posséder un dard diminuent de \~27% (tab2).
 
--   Le terme Béta 2 (significatif aussi) indique les chances que des fourmis des plantations de palmiers de posséder un dard. Cette valeur est négative et montre donc que les fourmis ont e\*-0.658 chances en moins d'avoir un dard par rapport aux fourmis de forets exploitées soit 52% (fig2).
+-   Le terme Béta 2 (significatif aussi) indique les chances que des fourmis des plantations de palmiers de posséder un dard. Cette valeur est négative et montre donc que les fourmis ont e\*-0.658 chances en moins d'avoir un dard par rapport aux fourmis de forets exploitées soit 52% (tab2).
 
--   Le paramètre Béta 3 n'étant pas significatif nous ne pouvons pas affirmer que les fourmis de forets primaires ont plus de chances d'avoir un dard que celles des forets exploitées (fig2).
+-   Le paramètre Béta 3 n'étant pas significatif nous ne pouvons pas affirmer que les fourmis de forets primaires ont plus de chances d'avoir un dard que celles des forets exploitées (tab2).
 
--   Notre modèle est bien aligné dans nos données ; nous ne sommes pas en situation de surdispersion (Déviance/ddl = 1.096) (fig2). 
+-   Notre modèle est bien aligné dans nos données ; nous ne sommes pas en situation de surdispersion (Déviance/ddl = 1.096) (tab2). 
 
 ## Discussion et Conclusion
 
