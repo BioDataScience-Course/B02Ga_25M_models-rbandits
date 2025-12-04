@@ -25,7 +25,6 @@ Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu
 
 Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces.
 
-
 ## Matériel et méthodes
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
@@ -87,7 +86,7 @@ chart(data = ant, mandible_length ~ subfamily %fill=% subfamily | environnement)
   coord_flip()
 ```
 
-Ce graphique décrit la longueur des mandibules des fourmis en fonctions de leur environnement et de leur famille. Pour commencer nous observons que pour les différentes familles, les mandibules varient en taille. mais nous observons également que au sein des familles, la taille des mandibules varient selon les environnements. Pour finir, nous observons que toutes les familles de fourmis ne sont pas présentes dans tout les environnements.   
+Ce graphique décrit la longueur des mandibules des fourmis en fonctions de leur environnement et de leur famille. Pour commencer nous observons que pour les différentes familles, les mandibules varient en taille. mais nous observons également que au sein des familles, la taille des mandibules varient selon les environnements. Pour finir, nous observons que toutes les familles de fourmis ne sont pas présentes dans tout les environnements.
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
@@ -98,10 +97,14 @@ chart(data = ant, ~ subfamily %fill=% environnement | environnement) +
   coord_flip()
 ```
 
+<<<<<<< HEAD
+... interprétation #3... Nous avons établi un graphique qui analyse la répartition des différentes familles de fourmis selon l'environnement. - La forêt exploitée présente beaucoup de Myrmicinae et de Ponerinae - La plantation de palmier à huile montre une forte baisse de diversité par rapport à la forêt exploitée, avec seulement quelques sous-familles présentes. - La forêt primaire accueille plusieurs sous-familles spécialisées, même si elles sont moins abondantes.
+=======
 Nous avons établi un graphique qui analyse la répartition des différentes familles de fourmis selon l'environnement. 
 - La forêt exploitée présente beaucoup de Myrmicinae et de Ponerinae
 - La plantation de palmier à huile montre une forte baisse de diversité par rapport à la forêt exploitée, avec seulement quelques sous-familles présentes.
 - La forêt primaire accueille plusieurs sous-familles spécialisées, même si elles sont moins abondantes.
+>>>>>>> 4f9a74d8c46719de2fe689d846d429b1a79f2698
 
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
@@ -110,7 +113,11 @@ chart(data = ant, head_length ~ head_width %col=% environnement| environnement) 
   geom_point()
 ```
 
+<<<<<<< HEAD
+... interprétation #4... Les graphique semble nous indiquer qu'il y a une corrélation entre longueur et largeur de tête. L'environnement ne semble pas directement influencer la morpholog .Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire \### Modélisation
+=======
 Les graphique semble nous indiquer qu'il y a une corrélation entre longueur et largeur de tête. L'environnement ne semble pas directement influencer la morpholog .Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire \### Modélisation
+>>>>>>> 4f9a74d8c46719de2fe689d846d429b1a79f2698
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
@@ -122,11 +129,13 @@ Les graphique semble nous indiquer qu'il y a une corrélation entre longueur et 
 head_lm <- lm(data = ant, head_length ~ head_width) 
 summary(head_lm) |> tabularise()
 chart(head_lm)
+chart$residuals(head_lm)
 ```
+
 $$`r eq__(head_lm, use_coefs = TRUE)`$$
 
-La longueur de la tête semble avoir un impact sur la largeur de la tête. Le nuage de point nous montre bien qu'il y a une relation entre ces deux mesures. Cette relation est confirmée par la réalisation de la régression linéaire dont les deux paramètres sont significatifs au seuil alpha de 5% nous rejetons donc l'hypothèse nulle selon laquelle ces paramètres sont = 0. Le paramètre béta de notre équation nous montre qu'à chaque fois que la tête augmente de taille de 1 mm, la largeur de la tête augment de 1.02 mm. nous rejetons l'hypothèse nulle selon laquelle ce paramètre est = 0. Quand au R^2 ajusté, il décrit 92.16% de la variation du modèle. Concernant la p-value du modèle, elle est inférieur au seuil alpha de 5% ce qui implique que notre modèle est fiable. Notre modèle semble bien s'aligner dans les données. Concernant nos résidus : ils semblent respecter l'hypothèse linéarité en se répartissant aléatoirement autour de 0, le graphique quantile-quantile montre que l'hypothèse de normalité semble satisfaite, la variance semble être constante (homoscédasticité des résidus) et enfin aucune valeur ne semble avoir une influence très importante sur nos résidus. 
 
+La longueur de la tête semble avoir un impact sur la largeur de la tête. Le nuage de point nous montre bien qu'il y a une relation entre ces deux mesures. Cette relation est confirmée par la réalisation de la régression linéaire dont les deux paramètres sont significatifs au seuil alpha de 5% nous rejetons donc l'hypothèse nulle selon laquelle ces paramètres sont = 0. Le paramètre béta de notre équation nous montre qu'à chaque fois que la tête augmente de taille de 1 mm, la largeur de la tête augment de 1.02 mm. nous rejetons l'hypothèse nulle selon laquelle ce paramètre est = 0. Quand au R\^2 ajusté, il décrit 92.16% de la variation du modèle. Concernant la p-value du modèle, elle est inférieur au seuil alpha de 5% ce qui implique que notre modèle est fiable. Notre modèle semble bien s'aligner dans les données. Concernant nos résidus : ils semblent respecter l'hypothèse linéarité en se répartissant aléatoirement autour de 0, le graphique quantile-quantile montre que l'hypothèse de normalité semble satisfaite, la variance semble être constante (homoscédasticité des résidus) et enfin aucune valeur ne semble avoir une influence très importante sur nos résidus.
 
 #### Régression linéaire 2
 
@@ -138,11 +147,10 @@ tabularise(summary(reg2))
 chart(reg2)
 chart$residuals(reg2)
 ```
+
 $$`r eq__(reg2, use_coefs = TRUE)`$$
 
-
-La longueur de la tête semble avoir un impact sur la longueur de Wéber. En effet, le paramètre béta de notre équation semble montrer qu'à chaque fois que la tête augmente de taille de 1 mm, la distance de Wéber augment de 1.45 mm. De plus ce paramètre est significatif au seuil de 5% donc nous rejetons l'hypothèse nulle selon laquelle ce paramètre est = 0.Quand au R^2 ajusté, il décrit 91,5% de la variation du modèle.Concernant la p-value du modèle, elle est inférieur au seuil alpha de 5% ce qui implique que notre modèle est fiable. Notre modèle semble bien s'aligner dans les données. Concernant l'analyse de nos résidus : ils semblent respecter l'hypothèse linéarité en se répartissant aléatoirement autour de 0, les résidus sont fible par rapport à la plage de valeurs prédites (A). Les résidus ont une distribution qui ne diffère pas trop de la Normale, et elle est symétrique (B). Nous observons également une bonne homocédatiscité des résidus bien qu'elle ne soit pas parfaite (C). Et enfin aucune valeur ne semble avoir un effet levier important mais 2 points ont un effet ce cook important qui ne semble pas influencer de façon très importante sur nos résidus (D). 
-
+La longueur de la tête semble avoir un impact sur la longueur de Wéber. En effet, le paramètre béta de notre équation semble montrer qu'à chaque fois que la tête augmente de taille de 1 mm, la distance de Wéber augment de 1.45 mm. De plus ce paramètre est significatif au seuil de 5% donc nous rejetons l'hypothèse nulle selon laquelle ce paramètre est = 0.Quand au R\^2 ajusté, il décrit 91,5% de la variation du modèle.Concernant la p-value du modèle, elle est inférieur au seuil alpha de 5% ce qui implique que notre modèle est fiable. Notre modèle semble bien s'aligner dans les données. Concernant l'analyse de nos résidus : ils semblent respecter l'hypothèse linéarité en se répartissant aléatoirement autour de 0, les résidus sont fible par rapport à la plage de valeurs prédites (A). Les résidus ont une distribution qui ne diffère pas trop de la Normale, et elle est symétrique (B). Nous observons également une bonne homocédatiscité des résidus bien qu'elle ne soit pas parfaite (C). Et enfin aucune valeur ne semble avoir un effet levier important mais 2 points ont un effet ce cook important qui ne semble pas influencer de façon très importante sur nos résidus (D).
 
 #### Modèle linéaire 1
 
@@ -152,20 +160,20 @@ La longueur de la tête semble avoir un impact sur la longueur de Wéber. En eff
 ant_lm1 <- lm(data = ant, head_length ~ mandible_length * environnement)
 summary_(ant_lm1) |> tabularise()
 ```
+
 ```{r chart lin1}
 chart(data = ant, head_length ~ mandible_length %col=% environnement) +
   geom_point() +
   stat_smooth(method = "lm", formula = y ~ x)
 ```
+
 ```{r resid lin1}
 chart$residuals(ant_lm1)
 ```
 
 $$`r eq__(ant_lm1, use_coefs = TRUE)`$$
 
-Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement. Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent. Nous voyons par contre que l'environnement primary est significativement différent et le modèle linéaire nous montre que le rapport longueur de tête / longueur de la mandibule est plus élevé dans cet environnement. 
-#### Modèle linéaire 2
-<!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
+Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement. Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent. Nous voyons par contre que l'environnement primary est significativement différent et le modèle linéaire nous montre que le rapport longueur de tête / longueur de la mandibule est plus élevé dans cet environnement. \#### Modèle linéaire 2 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r lin2}
 
@@ -190,14 +198,12 @@ c <- chart(data = ant, webers_length ~ head_length %col=% sting) +
 combine_charts(list(a, b, c), common.legend = TRUE)
 
 ```
+
 $$
 `r eq__(ant_lm2, use_coefs = TRUE, coef_digits = c(3, 2, 2, 2, 2, 2, 2), origdata = ant)`
 $$
 
-
-La longueur de webers peut être estimée à partir de certaines mesures morphologique concernant le corps des fourmis. La relation démontre également que la présence ou non de dard influence également cette longueur de webers.
-Notre modèle linéaire est significatif au seuil de 5 %. l'analyse des résidus nous montre également qu'il y a une répartition relativement linéaire des résidus et que leur valeur est moyennement faible par rapport aux valeurs prédites (A). Les résidus ont également une répartition normale et symétrique (B). nous observons également une certaine homocédatiscité des résidus bien qu'elle ne soit pas parfaite (C). Un résidus possède un effet de levier important et un effet de Cook moyen, un autre point possède un effet de Cook important mais ne devrais pas poser de problème au vu de la résistance de notre graphique (D).
-
+La longueur de webers peut être estimée à partir de certaines mesures morphologique concernant le corps des fourmis. La relation démontre également que la présence ou non de dard influence également cette longueur de webers. Notre modèle linéaire est significatif au seuil de 5 %. l'analyse des résidus nous montre également qu'il y a une répartition relativement linéaire des résidus et que leur valeur est moyennement faible par rapport aux valeurs prédites (A). Les résidus ont également une répartition normale et symétrique (B). nous observons également une certaine homocédatiscité des résidus bien qu'elle ne soit pas parfaite (C). Un résidus possède un effet de levier important et un effet de Cook moyen, un autre point possède un effet de Cook important mais ne devrais pas poser de problème au vu de la résistance de notre graphique (D).
 
 #### Modèle linéaire généralisé et/ou mixte 1
 
@@ -209,6 +215,7 @@ model_gauss <- glm(webers_length ~ head_length + environnement,
 summary(model_gauss) |> tabularise()
 
 ```
+
 $$
 `r eq__(model_gauss, use_coefs = TRUE, coef_digits = c(3, 2, 2, 2, 2, 2, 2), origdata = ant)`
 $$
@@ -219,7 +226,7 @@ $$
 
 -Environnement plantation de palmiers : effet négatif mais non significatif (p = 0.13).
 
--Les autres sous‑familles ne montrent pas d’effet significatif. 
+-Les autres sous‑familles ne montrent pas d’effet significatif.
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
@@ -230,19 +237,23 @@ model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = b
   tabularise(summary_(model_bino))
 
 ```
+
 $$
 `r eq__(model_bino, use_coefs = TRUE, coef_digits = c(2, 2, 2, 2, 2, 2, 2), origdata = ant)`
 $$
 
 - le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a ~82% de chances de posséder un dard. 
 
-- Le terme Béta 1 (significatif également) indique les chances d'avoir un dard en fonction de la longueur. Pour chaque mm de plus sur notre fourmis, les chances sont de e*-0.321 d'avoir un dard sont de 0,725. Donc pour chaque mm, les chances de posséder un dard diminuent de ~27%. 
+-   le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard.
 
-- Le terme Béta 2 (significatif aussi) indique les chances que des fourmis des plantations de palmiers de posséder un dard. Cette valeur est négative et montre donc que les fourmis ont e*-0.658 chances en moins d'avoir un dard par rapport aux fourmis de forets exploitées soit 52%. 
+-   Le terme Béta 1 (significatif également) indique les chances d'avoir un dard en fonction de la longueur. Pour chaque mm de plus sur notre fourmis, les chances sont de e\*-0.321 d'avoir un dard sont de 0,725. Donc pour chaque mm, les chances de posséder un dard diminuent de \~27%.
 
-- Le paramètre Béta 3 n'étant pas significatif nous ne pouvons pas affirmer que les fourmis de forets primaires ont plus de chances d'avoir un dard que celles des forets exploitées. 
+-   Le terme Béta 2 (significatif aussi) indique les chances que des fourmis des plantations de palmiers de posséder un dard. Cette valeur est négative et montre donc que les fourmis ont e\*-0.658 chances en moins d'avoir un dard par rapport aux fourmis de forets exploitées soit 52%.
 
-- Notre modèle est bien aligné dans nos données ; nous ne sommes pas en situation de surdispersion (Déviance/ddl = 1.096)
+-   Le paramètre Béta 3 n'étant pas significatif nous ne pouvons pas affirmer que les fourmis de forets primaires ont plus de chances d'avoir un dard que celles des forets exploitées.
+
+-   Notre modèle est bien aligné dans nos données ; nous ne sommes pas en situation de surdispersion (Déviance/ddl = 1.096).
+
 ## Conclusion
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
@@ -254,6 +265,7 @@ Nos modélisations ont révélé les points suivants :
 - Impact de l'Anthropisation : L'environnement joue un rôle filtre critique. Les plantations de palmiers à huile ne se contentent pas de réduire la biodiversité globale ; elles sélectionnent également des traits fonctionnels spécifiques, réduisant significativement la présence d'espèces pourvues de dards par rapport aux forêts exploitées ($\beta_{palmiers} = -0.66$).
 
 En somme, si la morphologie des fourmis obéit à des règles de croissance strictes, la répartition des traits fonctionnels (comme le dard) est, elle, fortement dépendante des pressions environnementales. L'analyse biométrique s'avère donc être un indicateur pertinent pour évaluer l'état de perturbation des écosystèmes.
+
 
 ## Références
 
