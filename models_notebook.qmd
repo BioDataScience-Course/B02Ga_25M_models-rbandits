@@ -247,10 +247,13 @@ $$
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
 
-- 
--
-- 
-- 
+Nos modélisations ont révélé les points suivants :
+
+- Cohérence Morphologique : Les relations entre les différents segments corporels (ex: longueur de la tête vs largeur) sont fortement corrélées et linéaires (R^2 > 0.9). Cependant, ces proportions peuvent s'adapter subtilement selon le milieu, comme observé avec le rapport tête/mandibule qui diffère significativement en forêt primaire.
+- Compromis Évolutif: L'analyse du modèle binomial démontre une relation inverse entre la taille et la défense : plus une fourmi est grande, moins elle a de probabilité de posséder un dard ($\beta_{taille} = -0.32$).
+- Impact de l'Anthropisation : L'environnement joue un rôle filtre critique. Les plantations de palmiers à huile ne se contentent pas de réduire la biodiversité globale ; elles sélectionnent également des traits fonctionnels spécifiques, réduisant significativement la présence d'espèces pourvues de dards par rapport aux forêts exploitées ($\beta_{palmiers} = -0.66$).
+
+En somme, si la morphologie des fourmis obéit à des règles de croissance strictes, la répartition des traits fonctionnels (comme le dard) est, elle, fortement dépendante des pressions environnementales. L'analyse biométrique s'avère donc être un indicateur pertinent pour évaluer l'état de perturbation des écosystèmes.
 
 ## Références
 
