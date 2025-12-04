@@ -59,7 +59,7 @@ chart(data = ant, head_length ~ mandible_length %col=% environnement) +
 - Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement (fig1).
 - Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent (β2 a une valeur de p de 7.64 .10^-1 et β4 a une valeur de p de 8.04 .10^-1) (fig1). 
 - L'environnement primary est significativement différent (β3 a une valeur de p de 7.33 .10^-7 et β5 a une valeur de p de 7.47 .10^-11) (fig1). 
-- Le modèle linéaire nous montre que le rapport longueur de tête / longueur de la mandibule est plus élevé dans cet environnement (tableau1). 
+- Le graphique du modèle linéaire nous montre que la régression linéaire du rapport longueur de tête / longueur de la mandibule est plus élevé dans l'environnement primary forest que logged forest et oil palm plantation qui ont une régression linéaire très similaire (tableau1). 
 
 ## Modèle 2
 
