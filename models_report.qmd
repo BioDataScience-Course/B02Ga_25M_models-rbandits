@@ -16,13 +16,14 @@ bibliography: references.bib
 
 <!--% Rédigez l'introduction de ce rapport en 5-6 phrases.-->
 
-La morphométrie est un outil clé pour la différenciation taxonomique des fourmis (Formicidae).
+La différenciation taxonomique des fourmis (Formicidae) repose largement sur l'analyse de traits morphologiques mesurables et de leurs variations. Ces relations biométriques entre les différents segments corporels constituent une base essentielle pour la classification des espèces.
 
-Notre étude applique des modèles à un jeu de données massifs couvrant 339 espèces capturées dans trois environnements distincts. L'objectif est d'évaluer si ces variations morphologiques permettent une discrimination fiable des espèces et de quantifier l'influence spécifique de l'environnement sur ces traits.
-
+Le jeu de données analysé ici rassemble les mesures morphométriques précises de 339 espèces, échantillonnées au travers de trois environnements distincts. Cette approche permet de confronter la variabilité phénotypique interspécifique aux contraintes écologiques imposées par le milieu de vie.
 
 <!--% Rédigez le but de ce rapport en 2 phrases.-->
-
+ 
+## But 
+ 
 Le but de ce rapport est d'identifier les facteurs influençant la morphologie des différentes fourmis et de présenter les deux modèles que nous pensons les plus pertinents de notre bloc-notes pour justifier cela. Nous avons utilisé les données récoltées par Bishop T. et Ewers R.
 
 ## Matériel et méthodes
