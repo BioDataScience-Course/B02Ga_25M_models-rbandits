@@ -210,9 +210,19 @@ summary(model_gauss) |> tabularise()
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
 ```{r lingen2}
+model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = binomial)
+  tabularise(summary_(model_bino))
 
 ```
+- le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a ~82% de chances de posséder un dard. 
 
+- Le terme Béta 1 (significatif également) indique les chances d'avoir un dard en fonction de la longueur. Pour chaque mm de plus sur notre fourmis, les chances sont de e*-0.321 d'avoir un dard sont de 0,725. Donc pour chaque mm, les chances de posséder un dard diminuent de ~27%. 
+
+- Le terme Béta 2 (significatif aussi) indique les chances que des fourmis des plantations de palmiers de posséder un dard. Cette valeur est négative et montre donc que les fourmis ont e*-0.658 chances en moins d'avoir un dard par rapport aux fourmis de forets exploitées soit 52%. 
+
+- Le paramètre Béta 3 n'étant pas significatif nous ne pouvons pas affirmer que les fourmis de forets primaires ont plus de chances d'avoir un dard que celles des forets exploitées. 
+
+- Notre modèle est bien aligné dans nos données ; nous ne sommes pas en situation de surdispersion (Déviance/ddl = 1.096)
 ## Conclusion
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
