@@ -123,7 +123,10 @@ chart(data = ant, head_length ~ head_width %col=% environnement| environnement) 
 head_lm <- lm(data = ant, head_length ~ head_width) 
 summary(head_lm) |> tabularise()
 chart(head_lm)
+chart$residuals(head_lm)
 ```
+$$`r eq__(reg1, use_coefs = TRUE)`$$
+La longueur de la tête semble avoir un impact sur la largeur de la tête. Le nuage de point nous montre bien qu'il y a une relation entre ces deux mesures. Cette relation est confirmée par la réalisation de la régression linéaire dont les deux paramètres sont significatifs au seuil alpha de 5% nous rejetons donc l'hypothèse nulle selon laquelle ces paramètres sont = 0. Le paramètre béta de notre équation nous montre qu'à chaque fois que la tête augmente de taille de 1 mm, la largeur de la tête augment de 1.02 mm. nous rejetons l'hypothèse nulle selon laquelle ce paramètre est = 0. Quand au R^2 ajusté, il décrit 92.16% de la variation du modèle. Concernant la p-value du modèle, elle est inférieur au seuil alpha de 5% ce qui implique que notre modèle est fiable. Notre modèle semble bien s'aligner dans les données. Concernant nos résidus : ils semblent respecter l'hypothèse linéarité en se répartissant aléatoirement autour de 0, le graphique quantile-quantile montre que l'hypothèse de normalité semble satisfaite, la variance semble être constante (homoscédasticité des résidus) et enfin aucune valeur ne semble avoir une influence très importante sur nos résidus. 
 
 #### Régression linéaire 2
 
@@ -136,7 +139,8 @@ chart(reg2)
 chart$residuals(reg2)
 ```
 $$`r eq__(reg2, use_coefs = TRUE)`$$
-La longueur de la tête semble avoir un impact sur la longueur de Wéber. En effet, le paramètre béta de notre équation semble montrer qu'à chaque fois que la tête augmente de taille de 1 mm, la distance de Wéber augment de 1.45 mm. De plus ce paramètre est significatif au seuil de 5% donc nous rejetons l'hypothèse nulle selon laquelle ce paramètre est = 0.Quand au R^2 ajusté, il décrit 91,5% de la variation du modèle.Concernant la p-value du modèle, elle est inférieur au seuil alpha de 5% ce qui implique que notre modèle est fiable. Notre modèle semble bien s'aligner dans les données. Concernant nos résidus : ils semblent respecter l'hypothèse linéarité en se répartissant aléatoirement autour de 0, le graphique quantile-quantile montre que l'hypothèse de normalité semble satisfaite, la variance semble être constante (homoscédasticité des résidus) et enfin aucune valeur ne semble avoir une influence très importante sur nos résidus. 
+La longueur de la tête semble avoir un impact sur la longueur de Wéber. En effet, le paramètre béta de notre équation semble montrer qu'à chaque fois que la tête augmente de taille de 1 mm, la distance de Wéber augment de 1.45 mm. De plus ce paramètre est significatif au seuil de 5% donc nous rejetons l'hypothèse nulle selon laquelle ce paramètre est = 0.Quand au R^2 ajusté, il décrit 91,5% de la variation du modèle.Concernant la p-value du modèle, elle est inférieur au seuil alpha de 5% ce qui implique que notre modèle est fiable. Notre modèle semble bien s'aligner dans les données. Concernant l'analyse de nos résidus : ils semblent respecter l'hypothèse linéarité en se répartissant aléatoirement autour de 0, les résidus sont fible par rapport à la plage de valeurs prédites (A). Les résidus ont une distribution qui ne diffère pas trop de la Normale, et elle est symétrique (B). Nous observons également une bonne homocédatiscité des résidus bien qu'elle ne soit pas parfaite (C). Et enfin aucune valeur ne semble avoir un effet levier important mais 2 points ont un effet ce cook important qui ne semble pas influencer de façon très importante sur nos résidus (D). 
+
 #### Modèle linéaire 1
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
@@ -180,12 +184,10 @@ combine_charts(list(a, b, c), common.legend = TRUE)
 
 ```
 $$
-`r eq__(ant_lm2, use_coefs = TRUE, coef_digits = c(3, 2, 2, 2, 2, 2, 2), origdata = ant)`
+`r eq__(ant_lm2, use_coefs = TRUE, coef_digits = c(2, 2, 2, 2, 2, 2), origdata = ant)`
 $$
 
-La longueur de webers peut être estimée à partir de certaines mesures morphologique concernant le corps des fourmis. La relation démontre également que la présence ou non de dard influence également cette longueur de webers.
-Notre modèle linéaire est significatif au seuil de 5 %. l'analyse des résidus nous montre également qu'il y a une répartition relativement linéaire des résidus et que leur valeur est moyennement faible par rapport aux valeurs prédites (A). Les résidus ont également une répartition normale et symétrique (B). nous observons également une certaine homocédatiscité des résidus bien qu'elle ne soit pas parfaite (C). Un résidus possède un effet de levier important et un effet de Cook moyen, un autre point possède un effet de Cook important mais ne devrais pas poser de problème au vu de la résistance de notre graphique (D).
-
+La longueur de webers peut être estimée à partir de certaines mesures morphologique comme la largeur du protonum, le longueur du fémur postérieure, la longueur de la tête. La relation démontre que la présence ou non de dard influence également cette longueur de webers. Nos graphiques semble monter qu'il y a une différence entre les fourmis possédant des dards ou non. Cette relation est confirmée par notre modèle linéaire qui est significatif au seuil de 5 %. Quand au R^2 ajusté, il décrit 93,54% de la variation du modèle. L'analyse des résidus nous montre également qu'il y a une répartition relativement linéaire des résidus et que leur valeur est moyennement faible par rapport aux valeurs prédites (A). Les résidus ont une distribution qui ne diffère pas trop de la Normale, et elle est symétrique (B). Nous observons également une bonne homocédatiscité des résidus bien qu'elle ne soit pas parfaite (C). Un résidus possède un effet de levier important et un effet de Cook moyen, un autre point possède un effet de Cook important mais ne devrais pas poser de problème au vu de la résistance de notre graphique (D).
 
 #### Modèle linéaire généralisé et/ou mixte 1
 
