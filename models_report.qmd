@@ -44,7 +44,7 @@ Les données ont été trouvées sur le site : <https://zenodo.org.> Les donnée
 ant_lm1 <- lm(data = ant, head_length ~ mandible_length * environnement)
 summary_(ant_lm1) |> tabularise()
 ```
-
+#
 #graphique de la régression linéaire
 
 ```{r tableau1}
@@ -52,6 +52,8 @@ chart(data = ant, head_length ~ mandible_length %col=% environnement) +
   geom_point() +
   stat_smooth(method = "lm", formula = y ~ x)
 ```
+#| label: fig-model-allom
+#| fig-cap: "Relation allométrique entre la longueur de la tête et la longueur de la mandibule selon les trois types d'environnements (lignes de régression linéaire)."
 
 #équation de la régression linéaire $$`r eq__(ant_lm1, use_coefs = TRUE)`$$
 
@@ -70,6 +72,7 @@ model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = b
   tabularise(summary_(model_bino))
 
 ```
+
 
 #équation du modèle 
 $$
