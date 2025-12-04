@@ -18,6 +18,7 @@ bibliography: references.bib
 
 La différenciation taxonomique des fourmis (Formicidae) repose largement sur l'analyse de traits morphologiques mesurables et de leurs variations. Ces relations biométriques entre les différents segments corporels constituent une base essentielle pour la classification des espèces.
 
+
 Le jeu de données analysé ici rassemble les mesures morphométriques précises de 339 espèces, échantillonnées au travers de trois environnements distincts. Cette approche permet de confronter la variabilité phénotypique interspécifique aux contraintes écologiques imposées par le milieu de vie.
 
 <!--% Rédigez le but de ce rapport en 2 phrases.-->
