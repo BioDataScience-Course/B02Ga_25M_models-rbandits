@@ -111,7 +111,8 @@ chart(data = ant, head_length ~ head_width %col=% environnement| environnement) 
   geom_point()
 ```
 
-... interprétation #4... Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire \### Modélisation
+... interprétation #4... 
+Les graphique semble nous indiquer qu'il y a une corrélation entre longueur et largeur de tête. L'environnement ne semble pas directement influencer la morpholog .Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire \### Modélisation
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
@@ -153,6 +154,9 @@ chart(data = ant, head_length ~ mandible_length %col=% environnement) +
 ```{r resid lin1}
 chart$residuals(ant_lm1)
 ```
+$$`r eq__(lin1, use_coefs = TRUE)`$$
+interprétation : 
+Nous avons comparé la longueur de la tête avec la longueur de la mandibule et séparé les trois types d'environnement. Avec le résumé de données, nous pouvons voir que le type d'environnement choisi pour la base est logged forest et que oil palm plantation n'est pas significativement différent. Nous voyons par contre que l'environnement primary est significativement différent et le modèle linéaire nous montre que le rapport longueur de tête / longueur de la mandibule est plus élevé dans cet environnement. 
 #### Modèle linéaire 2
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
@@ -197,6 +201,9 @@ model_gauss <- glm(webers_length ~ head_length + environnement,
 summary(model_gauss) |> tabularise()
 
 ```
+$$
+`r eq__(model_gauss, use_coefs = TRUE, coef_digits = c(3, 2, 2, 2, 2, 2, 2), origdata = ant)`
+$$
 -Sous‑famille Ponerinae : effet positif significatif (Estimate ≈ +0.45 mm, p = 0.025). Les fourmis de cette sous‑famille ont une longueur de Weber plus grande que la catégorie de référence.
 
 -Environnement forêt primaire : effet positif significatif (Estimate ≈ +0.136 mm, p = 0.001). Les fourmis de la forêt primaire sont plus grandes.
@@ -227,7 +234,10 @@ model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = b
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
 
-...vos conclusions ici...
+- 
+-
+- 
+- 
 
 ## Références
 

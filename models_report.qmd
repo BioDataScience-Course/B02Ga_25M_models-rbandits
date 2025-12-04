@@ -15,20 +15,28 @@ bibliography: references.bib
 ## Introduction
 
 <!--% Rédigez l'introduction de ce rapport en 5-6 phrases.-->
+Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.
 
+Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces.
 ## But
 
 <!--% Rédigez le but de ce rapport en 2 phrases.-->
 
-Le but de ce rapport est d'identifier les facteurs influençant la morphologie des différentes fourmis. Pour cela nous utilisons les données récoltées par Bishop T. et Ewers R.
+Le but de ce rapport est d'identifier les facteurs influençant la morphologie des différentes fourmis et de présenter les deux modèles que nous pensons les plus pertinents de notre bloc-notes pour justifier cela. Nous avons utilisé les données récoltées par Bishop T. et Ewers R.
 
 ## Matériel et méthodes
 
 <!--% Cette section doit comprendre deux parties. La première partie doit expliciter les données employées et la seconde traiter des analyses réalisées et des logiciels employés.-->
 
+Les données ont été trouvées sur le site : <https://zenodo.org.> Les données ont été remaniées et modifiées dans le dossier import.R. Nous avons essentiellement utilisés les données liées à la morphométrie par rapport aux différents environnements. Nous réalisons l'analyse avec le logiciel R (r R.version.string) et en particulier le package {modelit} version r packageVersion("modelit") dans la SciViews Box 2025. Saturn Cloud (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler la version finale de ce rapport.
+
 ## Résultats
 
 <!--% Présentez les deux modèles les plus pertinents que vous avez sélectionnés. Structurez la section en deux parties avec deux titres de niveau trois.-->
+
+### Modèle 1
+
+### Modèle 2
 
 ## Discussion et Conclusion
 
