@@ -87,7 +87,9 @@ model_bino <- glm(data = ant, sting ~ webers_length + environnement , family = b
 
 ```
 
-#équation du modèle $$
+#équation du modèle 
+
+$$
 `r eq__(model_bino, use_coefs = TRUE, coef_digits = c(2, 2, 2, 2, 2, 2, 2), origdata = ant)`
 $$
 
