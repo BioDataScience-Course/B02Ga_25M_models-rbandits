@@ -8,6 +8,7 @@ format:
 editor: visual
 lang: fr
 bibliography: references.bib
+mainfont: Liberation Sans
 ---
 
 ```{r setup, include=FALSE}
