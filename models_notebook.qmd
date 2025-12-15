@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Influence de l'environnement sur la morphometrie des fourmis (Formicidae)"
 author: "Pierre Vandenberghe, Théo Galand, Arthur Ohmann, Jérôme Borgniet"
 format:
   html:
@@ -8,7 +8,7 @@ format:
     toc: true
 editor: visual
 lang: fr
-bibliography: references.bib
+bibliography: "./references.bib"
 ---
 
 <!--# Ceci est un commentaire. -->
@@ -21,15 +21,13 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.
-
-Le jeu de donné utilisé concerne des données reprise sur la morphologie de 339 espèces.
+Les espèces de fourmis peuvent être différencier par leur morphologie. Le jeu de donné [@Bishop_2018] concerne des données reprise sur la morphologie de 339 espèces. Ces fourmis ont été capturé dans 3 environnements différents. Le but de ce projet est donc de se baser sur ces données pour définir les différences et si elles peuvent réellement permettre de différencier les espèces.
 
 ## Matériel et méthodes
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
 
-Les données ont été trouvées sur le site : https://zenodo.org. Les données ont été remaniées et modifiées dans le dossier import.R. Nous réalisons l'analyse avec le logiciel R (r R.version.string) et en particulier le package {modelit} version r packageVersion("modelit") dans la SciViews Box 2025. Saturn Cloud (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler la version finale de ce bloc-notes.
+Les données ont été trouvées sur le site : https://zenodo.org. Les données récolté dans du jeu de données de [@Bishop_2018] ont été remaniées et modifiées dans le dossier import.R. Nous réalisons l'analyse avec le logiciel R (r R.version.string) et en particulier le package {modelit} version r packageVersion("modelit") dans la SciViews Box 2025. Saturn Cloud (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler la version finale de ce bloc-notes.
 
 ## Analyses
 
@@ -61,17 +59,6 @@ tabularise$headtail(ant)
 ```{r chart1}
 chart(data = ant, webers_length ~ hind_tibia  %col=% environnement | environnement) +
   geom_point(na.rm= TRUE)
-# ant_num <- ant %>%
-#   select(
-#     -morph, -sting, -acidipore, -pilosity,
-#     -alitrunk_spines, -petiolar_spines,
-#     -sculpturing, -environnement
-#   ) %>%
-#   drop_na(.)%>%
-#   mutate(across(everything(), as.numeric))
-# 
-# ant_cor <- correlation(ant_num)
-# plot(ant_cor, type = "lower")
 
 ```
 
@@ -97,14 +84,7 @@ chart(data = ant, ~ subfamily %fill=% environnement | environnement) +
   coord_flip()
 ```
 
-<<<<<<< HEAD
-... interprétation #3... Nous avons établi un graphique qui analyse la répartition des différentes familles de fourmis selon l'environnement. - La forêt exploitée présente beaucoup de Myrmicinae et de Ponerinae - La plantation de palmier à huile montre une forte baisse de diversité par rapport à la forêt exploitée, avec seulement quelques sous-familles présentes. - La forêt primaire accueille plusieurs sous-familles spécialisées, même si elles sont moins abondantes.
-=======
-Nous avons établi un graphique qui analyse la répartition des différentes familles de fourmis selon l'environnement. 
-- La forêt exploitée présente beaucoup de Myrmicinae et de Ponerinae
-- La plantation de palmier à huile montre une forte baisse de diversité par rapport à la forêt exploitée, avec seulement quelques sous-familles présentes.
-- La forêt primaire accueille plusieurs sous-familles spécialisées, même si elles sont moins abondantes.
->>>>>>> 4f9a74d8c46719de2fe689d846d429b1a79f2698
+Nous avons établi un graphique qui analyse la répartition des différentes familles de fourmis selon l'environnement. - La forêt exploitée présente beaucoup de Myrmicinae et de Ponerinae - La plantation de palmier à huile montre une forte baisse de diversité par rapport à la forêt exploitée, avec seulement quelques sous-familles présentes. - La forêt primaire accueille plusieurs sous-familles spécialisées, même si elles sont moins abondantes.
 
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
@@ -113,11 +93,7 @@ chart(data = ant, head_length ~ head_width %col=% environnement| environnement) 
   geom_point()
 ```
 
-<<<<<<< HEAD
-... interprétation #4... Les graphique semble nous indiquer qu'il y a une corrélation entre longueur et largeur de tête. L'environnement ne semble pas directement influencer la morpholog .Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire \### Modélisation
-=======
 Les graphique semble nous indiquer qu'il y a une corrélation entre longueur et largeur de tête. L'environnement ne semble pas directement influencer la morpholog .Le nuage de point a une forme linéaire, on suppose pouvoir faire une regression linéaire \### Modélisation
->>>>>>> 4f9a74d8c46719de2fe689d846d429b1a79f2698
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
@@ -133,7 +109,6 @@ chart$residuals(head_lm)
 ```
 
 $$`r eq__(head_lm, use_coefs = TRUE)`$$
-
 
 La longueur de la tête semble avoir un impact sur la largeur de la tête. Le nuage de point nous montre bien qu'il y a une relation entre ces deux mesures. Cette relation est confirmée par la réalisation de la régression linéaire dont les deux paramètres sont significatifs au seuil alpha de 5% nous rejetons donc l'hypothèse nulle selon laquelle ces paramètres sont = 0. Le paramètre béta de notre équation nous montre qu'à chaque fois que la tête augmente de taille de 1 mm, la largeur de la tête augment de 1.02 mm. nous rejetons l'hypothèse nulle selon laquelle ce paramètre est = 0. Quand au R\^2 ajusté, il décrit 92.16% de la variation du modèle. Concernant la p-value du modèle, elle est inférieur au seuil alpha de 5% ce qui implique que notre modèle est fiable. Notre modèle semble bien s'aligner dans les données. Concernant nos résidus : ils semblent respecter l'hypothèse linéarité en se répartissant aléatoirement autour de 0, le graphique quantile-quantile montre que l'hypothèse de normalité semble satisfaite, la variance semble être constante (homoscédasticité des résidus) et enfin aucune valeur ne semble avoir une influence très importante sur nos résidus.
 
@@ -242,7 +217,7 @@ $$
 `r eq__(model_bino, use_coefs = TRUE, coef_digits = c(2, 2, 2, 2, 2, 2, 2), origdata = ant)`
 $$
 
-- le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a ~82% de chances de posséder un dard. 
+-   le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard.
 
 -   le paramètre alpha (significatif) indique les chances d'avoir un dard pour une fourmis de référence (donc de taille moyenne et en logged forest). Au vu de notre modèle et grace à la fonction logit : nous déterminons que notre fourmis de référence a \~82% de chances de posséder un dard.
 
@@ -260,12 +235,11 @@ $$
 
 Nos modélisations ont révélé les points suivants :
 
-- Cohérence Morphologique : Les relations entre les différents segments corporels (ex: longueur de la tête vs largeur) sont fortement corrélées et linéaires (R^2 > 0.9). Cependant, ces proportions peuvent s'adapter subtilement selon le milieu, comme observé avec le rapport tête/mandibule qui diffère significativement en forêt primaire.
-- Compromis Évolutif: L'analyse du modèle binomial démontre une relation inverse entre la taille et la défense : plus une fourmi est grande, moins elle a de probabilité de posséder un dard ($\beta_{taille} = -0.32$).
-- Impact de l'Anthropisation : L'environnement joue un rôle filtre critique. Les plantations de palmiers à huile ne se contentent pas de réduire la biodiversité globale ; elles sélectionnent également des traits fonctionnels spécifiques, réduisant significativement la présence d'espèces pourvues de dards par rapport aux forêts exploitées ($\beta_{palmiers} = -0.66$).
+-   Cohérence Morphologique : Les relations entre les différents segments corporels (ex: longueur de la tête vs largeur) sont fortement corrélées et linéaires (R\^2 \> 0.9). Cependant, ces proportions peuvent s'adapter subtilement selon le milieu, comme observé avec le rapport tête/mandibule qui diffère significativement en forêt primaire.
+-   Compromis Évolutif: L'analyse du modèle binomial démontre une relation inverse entre la taille et la défense : plus une fourmi est grande, moins elle a de probabilité de posséder un dard ($\beta_{taille} = -0.32$).
+-   Impact de l'Anthropisation : L'environnement joue un rôle filtre critique. Les plantations de palmiers à huile ne se contentent pas de réduire la biodiversité globale ; elles sélectionnent également des traits fonctionnels spécifiques, réduisant significativement la présence d'espèces pourvues de dards par rapport aux forêts exploitées ($\beta_{palmiers} = -0.66$).
 
 En somme, si la morphologie des fourmis obéit à des règles de croissance strictes, la répartition des traits fonctionnels (comme le dard) est, elle, fortement dépendante des pressions environnementales. L'analyse biométrique s'avère donc être un indicateur pertinent pour évaluer l'état de perturbation des écosystèmes.
-
 
 ## Références
 
