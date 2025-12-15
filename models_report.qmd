@@ -7,12 +7,7 @@ format:
     toc: true
 editor: visual
 lang: fr
-<<<<<<< HEAD
-bibliography: references.bib
-mainfont: Liberation Sans
-=======
 bibliography: "./references.bib"
->>>>>>> 5db03aad7e29301e6ceac4e8bc38d3c2d798806f
 ---
 
 ```{r setup, include=FALSE}
